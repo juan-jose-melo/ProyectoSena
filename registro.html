@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro | Crear Cuenta</title>
+  <link rel="stylesheet" href="inicia-sesion/registro.css">
+</head>
+<body>
+
+  <div class="auth-card">
+    <div class="card-header">
+      <h2>Crear Cuenta</h2>
+      <p>Completa tus datos para unirte a la plataforma</p>
+    </div>
+
+    <div id="active-session-banner" class="welcome-banner hidden">
+      <p>Sesión activa: <strong id="active-user-name">Usuario</strong></p>
+      <button id="logout-btn" class="btn-secondary">Cerrar Sesión para Registrar Otro Usuario</button>
+    </div>
+
+    <form id="register-form">
+      <div class="input-group">
+        <label for="fullname">Nombre Completo</label>
+        <input type="text" id="fullname" placeholder="Ej. Ana García" required>
+      </div>
+
+      <div class="input-group">
+        <label for="reg-email">Correo Electrónico</label>
+        <input type="email" id="reg-email" placeholder="correo@ejemplo.com" required>
+      </div>
+
+      <div class="input-group">
+        <label for="reg-password">Contraseña</label>
+        <input type="password" id="reg-password" placeholder="••••••••" required minlength="6">
+      </div>
+
+      <div class="input-group">
+        <label for="confirm-password">Confirmar Contraseña</label>
+        <input type="password" id="confirm-password" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn-primary">Registrarse</button>
+    </form>
+
+    <div class="card-footer">
+      <p>¿Ya tienes una cuenta? <a href="iniciarseccion.html">Inicia sesión aquí</a></p>
+      
+      <a href="index.html" class="btn-home">← Volver al Inicio</a>
+    </div>
+  </div>
+
+  <script src="inicia-sesion/registro.js"></script>
+</body>
+</html>
