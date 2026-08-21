@@ -6,19 +6,19 @@
 }
 
 :root {
-  --bg-dark: #0f172a;
-  --bg-card: #1e293b;
+  --bg-dark: #555554;
+  --bg-card: #c0b522;
   --text-main: #f8fafc;
-  --text-muted: #94a3b8;
+  --text-muted: #d8d8da;
   --accent-gold: #d97706;
   --accent-hover: #fbbf24;
-  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color: rgba(255, 255, 255, 0.795);
 }
 
 body {
   background-color: #e3e8eb;
   background-image: 
-    linear-gradient(rgb(253, 254, 255), rgb(223, 221, 221), rgb(14, 66, 179)), 
+    linear-gradient(rgb(253, 254, 255), rgb(170, 170, 170), rgb(94, 94, 94)), 
     url('pulidora.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -38,6 +38,7 @@ p.parrafo-slider {
 hr {
   border: none;
   border-top: 5px dashed #0f0f0f;
+  box-shadow:black ;
 }
 
 /* ================= HEADER (PC Y ESCRITORIO) ================= */
@@ -76,7 +77,7 @@ hr {
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  border: 3px solid #083347;
+  border: 3px solid #cabd0b;
   object-fit: cover;
   display: block;
 }
@@ -125,7 +126,7 @@ hr {
 
 .dropdown-menu li a:hover {
   background-color: #f1f1f1;
-  color: #104568;
+  color: #6b6f72;
 }
 
 .dropdown-menu.show {
@@ -196,33 +197,35 @@ hr {
   width: 100%;
   max-width: 1400px;
   margin: 30px auto;
+  padding: 0 20px;
 }
 
 .slider-viewport {
   width: 100%;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 .slider-track {
   display: flex;
+  width: 100%;
   gap: 20px;
-  padding: 0; /* Removido el padding que descentraba la diapositiva */
   will-change: transform;
 }
 
 .slide {
-  flex: 0 0 70%; /* Tamaño ajustado para balance visual en pantalla */
+  flex: 0 0 70%;
+  max-width: 100%;
   height: 420px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   border: none;
   padding: 0;
   margin: 0;
   cursor: pointer;
   outline: none;
-  background: transparent;
-  background-color: #007bff;
+  background-color: #55575a;
 }
 
 .slide img {
@@ -236,28 +239,30 @@ hr {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #ffffff;
-  color: #0400f1;
-  border: 1px solid #ddd;
+  background-color: rgba(75, 76, 77, 0.85);
+  color: #ffffff;
+  border: 1px solid rgba(168, 167, 167, 0.85);
   font-size: 18px;
   width: 44px;
   height: 44px;
   border-radius: 50%;
   cursor: pointer;
   z-index: 20;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0,0.20);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s;
+  transition: all 0.2s ease;
 }
 
 .arrow:hover {
+  background-color: rgb(8, 8, 8,0.80);
+  color: #fbbf24;
   transform: translateY(-50%) scale(1.1);
 }
 
-.arrow-left { left: 15px; }
-.arrow-right { right: 15px; }
+.arrow-left { left: 30px; }
+.arrow-right { right: 30px; }
 
 .dots-container {
   display: flex;
@@ -267,8 +272,8 @@ hr {
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   background-color: #ccc;
   border-radius: 50%;
   cursor: pointer;
@@ -276,7 +281,7 @@ hr {
 }
 
 .dot.active {
-  background-color: #0e3a53;
+  background-color: #fde507;
   transform: scale(1.3);
 }
 
@@ -286,6 +291,7 @@ hr {
   max-width: 1400px;
   margin: 20px auto 50px;
   padding: 10px 40px;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .mini-slider-viewport {
@@ -303,7 +309,7 @@ hr {
 .mini-box {
   flex: 0 0 calc((100% - (15px * 4)) / 5);
   min-height: 200px;
-  background-color: #ffffff;
+  background-color: rgba(105, 105, 105, 0.973);
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 12px;
@@ -313,7 +319,7 @@ hr {
   justify-content: space-between;
   gap: 10px;
   text-decoration: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0px 10px rgb(70, 70, 70);
   transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
               background-color 0.3s ease, 
               box-shadow 0.3s ease, 
@@ -343,7 +349,7 @@ hr {
 .mini-box-title {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #083347;
+  color: #ffffff;
   text-align: center;
   line-height: 1.25;
   transition: color 0.3s ease;
@@ -356,14 +362,14 @@ hr {
 }
 
 .mini-box:hover {
-  background-color: #083347;
-  border-color: #083347;
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(8, 51, 71, 0.25);
+  background-color: #dbdbdb;
+  border-color: #f5b056;
+  transform: translateY(0px);
+  box-shadow: 0 10px 20px rgb(255, 251, 23);
 }
 
 .mini-box:hover .mini-box-title {
-  color: #ffffff;
+  color: #d49c00;
 }
 
 .mini-box:hover .mini-box-img img {
@@ -375,7 +381,7 @@ hr {
   top: 50%;
   transform: translateY(-50%);
   background-color: #ffffff;
-  color: #083347;
+  color: #010405;
   border: 1px solid #ddd;
   font-size: 14px;
   width: 34px;
@@ -383,7 +389,7 @@ hr {
   border-radius: 50%;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 15px rgb(212, 210, 208);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -391,9 +397,10 @@ hr {
 }
 
 .mini-arrow:hover {
-  background-color: #083347;
-  color: #ffffff;
+  background-color: #ffdd1d;
+  color: #ff821c;
   transform: translateY(-50%) scale(1.1);
+   box-shadow: 0 2px 8px rgb(238, 123, 7);
 }
 
 .mini-arrow-left { left: 0; }
@@ -601,7 +608,6 @@ hr {
 }
 
 @media (max-width: 768px) {
-  /* Reorganización en capas del Header */
   .header-main {
     padding: 10px 15px;
   }
@@ -614,7 +620,6 @@ hr {
     gap: 10px 0;
   }
 
-  /* Capa 1: Logo y Menú en la parte superior */
   .logo-container {
     order: 1;
   }
@@ -633,7 +638,6 @@ hr {
     font-size: 0.9rem;
   }
 
-  /* Capa 2: Buscador ancho completo */
   .search-box {
     order: 3;
     width: 100%;
@@ -641,7 +645,6 @@ hr {
     margin-top: 2px;
   }
 
-  /* Capa 3: Navegación de usuario horizontal */
   .header-links {
     order: 4;
     width: 100%;
@@ -661,20 +664,18 @@ hr {
     padding: 6px 5px;
   }
 
-  /* Sliders */
   .slider-track {
     padding: 0;
   }
 
   .slide {
-    flex: 0 0 100%;
+    flex: 0 0 70%;
     height: 230px;
   }
 
-  .arrow-left { left: 5px; }
-  .arrow-right { right: 5px; }
+  .arrow-left { left: 10px; }
+  .arrow-right { right: 10px; }
 
-  /* Contenido general y Footer */
   .caja-publicidad {
     flex-direction: column;
   }
