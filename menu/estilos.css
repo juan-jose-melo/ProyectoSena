@@ -4,58 +4,55 @@
   padding: 0;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
-.parrafo-slider{
-    margin-top:30px;
-    font-size: 30px;
-    text-align: center;
 
+:root {
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent-gold: #d97706;
+  --accent-hover: #fbbf24;
+  --border-color: rgba(255, 255, 255, 0.08);
 }
 
-.logo{
-    width: 80px;
-    height: 80px;
-    border-radius: 80px;
-    border: 20px;
-    border: solid;
-    border-color: #083347;
-}
 body {
-  /* Color sólido si falla la imagen y el degradado */
   background-color: #e3e8eb;
-
-  /* Combinación de degradado (con transparencia) + imagen de fondo */
   background-image: 
-    linear-gradient(rgb(253, 254, 255), rgb(223, 221, 221),  rgb(14, 66, 179)), 
-    url('menu/pulidora.jpg');
-
-  /* Configuración del fondo */
+    linear-gradient(rgb(253, 254, 255), rgb(223, 221, 221), rgb(14, 66, 179)), 
+    url('pulidora.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-
-  /* Asegura la altura completa */
   min-height: 100vh;
   margin: 0;
-}
-hr {
-  border: none;
-  border-top: 5px dashed #0f0f0f; /* Línea discontinua azul */
+  overflow-x: hidden;
 }
 
-/* ================= HEADER ================= */
+p.parrafo-slider {
+  margin-top: 30px;
+  font-size: 30px;
+  text-align: center;
+}
+
+hr {
+  border: none;
+  border-top: 5px dashed #0f0f0f;
+}
+
+/* ================= HEADER (PC Y ESCRITORIO) ================= */
 .header {
   width: 100%;
 }
 
 .header-main {
-  /* Fondo con Imagen + Filtro oscuro para contraste de texto */
   background-image: url('menu.PNG');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: white;
   padding: 12px 20px;
+  width: 100%;
 }
 
 .header-container {
@@ -64,30 +61,30 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 15px;
+  gap: 20px;
+  width: 100%;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .logo {
-  color: white;
-  text-decoration: none;
-  font-weight: 900;
-  font-size: 1.6rem;
-  line-height: 1;
-  display: flex;
-  flex-direction: column;
-  letter-spacing: -0.5px;
-}
-
-.logo span {
-  font-size: 0.55rem;
-  letter-spacing: 0.5px;
-  font-weight: bold;
-  margin-top: 2px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 3px solid #083347;
+  object-fit: cover;
+  display: block;
 }
 
 .menu-wrapper {
   position: relative;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .menu-btn {
@@ -165,6 +162,7 @@ hr {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-shrink: 0;
 }
 
 .nav-item {
@@ -175,6 +173,7 @@ hr {
   display: flex;
   align-items: center;
   gap: 5px;
+  white-space: nowrap;
 }
 
 .cart-icon {
@@ -188,6 +187,7 @@ hr {
   padding: 8px 10px;
   font-size: 0.85rem;
   letter-spacing: 0.3px;
+  width: 100%;
 }
 
 /* ================= SLIDER PRINCIPAL ================= */
@@ -206,18 +206,18 @@ hr {
 .slider-track {
   display: flex;
   gap: 20px;
-  padding: 0 12.5%;
+  padding: 0; /* Removido el padding que descentraba la diapositiva */
   will-change: transform;
 }
 
 .slide {
-  flex: 0 0 75%;
+  flex: 0 0 70%; /* Tamaño ajustado para balance visual en pantalla */
   height: 420px;
-  border-radius: 12px;         /* Respeta los bordes redondeados */
-  overflow: hidden;            /* Corta la imagen en las esquinas redondeadas */
+  border-radius: 12px;
+  overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   border: none;
-  padding: 0;                  /* Elimina el relleno por defecto del botón */
+  padding: 0;
   margin: 0;
   cursor: pointer;
   outline: none;
@@ -228,11 +228,10 @@ hr {
 .slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover;           /* Llena todo el espacio del botón sin dejar bordes */
+  object-fit: cover;
   display: block;
 }
 
-/* BOTONES Y PUNTOS DEL SLIDER */
 .arrow {
   position: absolute;
   top: 50%;
@@ -257,8 +256,8 @@ hr {
   transform: translateY(-50%) scale(1.1);
 }
 
-.arrow-left { left: 10%; }
-.arrow-right { right: 10%; }
+.arrow-left { left: 15px; }
+.arrow-right { right: 15px; }
 
 .dots-container {
   display: flex;
@@ -281,7 +280,7 @@ hr {
   transform: scale(1.3);
 }
 
-/* ================= MINI SLIDER DE 10 CAJITAS ================= */
+/* ================= MINI SLIDER ================= */
 .mini-slider-container {
   position: relative;
   max-width: 1400px;
@@ -349,8 +348,6 @@ hr {
   line-height: 1.25;
   transition: color 0.3s ease;
   width: 100%;
-  
-  /* Corregido y compatible con estándares */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -358,7 +355,6 @@ hr {
   overflow: hidden;
 }
 
-/* EFECTOS HOVER */
 .mini-box:hover {
   background-color: #083347;
   border-color: #083347;
@@ -374,7 +370,6 @@ hr {
   transform: scale(1.08);
 }
 
-/* BOTONES DE NAVEGACIÓN DEL MINI SLIDER */
 .mini-arrow {
   position: absolute;
   top: 50%;
@@ -431,21 +426,71 @@ hr {
   object-fit: cover;
 }
 
-/* Variables para colores refinados */
-:root {
-  --bg-dark: #0f172a;
-  --bg-card: #1e293b;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --accent-gold: #d97706; /* Detalle elegante en tono dorado/ámbar */
-  --accent-hover: #fbbf24;
-  --border-color: rgba(255, 255, 255, 0.08);
+/* ================= SLIDER NEBULA ================= */
+.orbita-hyperion {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
+.tunel-nebula {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pista-quantum {
+  display: flex;
+}
+
+.capsula-slide {
+  flex: 0 0 calc(50% - 10px);
+  margin-right: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.capsula-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.flecha-cyber {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.flecha-cyber:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.flecha-cyber.ant { left: -15px; }
+.flecha-cyber.sig { right: -15px; }
+
+/* ================= FOOTER ================= */
 .footer-container {
   background-color: var(--bg-dark);
   color: var(--text-main);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 4rem 2rem 2rem 2rem;
   border-top: 1px solid var(--border-color);
 }
@@ -458,7 +503,6 @@ hr {
   gap: 3rem;
 }
 
-/* Columna de Marca */
 .footer-logo {
   font-size: 1.8rem;
   font-weight: 700;
@@ -493,7 +537,6 @@ hr {
   border-radius: 20px;
 }
 
-/* Columnas de Enlaces */
 .footer-links h3 {
   font-size: 1rem;
   font-weight: 600;
@@ -504,8 +547,6 @@ hr {
 
 .footer-links ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 .footer-links li {
@@ -525,7 +566,6 @@ hr {
   transform: translateX(3px);
 }
 
-/* Barra Inferior */
 .footer-bottom {
   max-width: 1200px;
   margin: 3rem auto 0 auto;
@@ -553,163 +593,7 @@ hr {
   color: var(--text-main);
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Estilo para tu enlace original */
-.nav-item.user-icon {
-  text-decoration: none;
-  display: inline-block;
-  padding: 10px 15px;
-}
-
-/* Menú desplegable oculto por defecto */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #ffffff;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  z-index: 1000;
-}
-
-/* Enlaces del submenú desplegable */
-.dropdown-content a {
-  color: #333333;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Efecto al pasar el cursor sobre las opciones */
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
-
-/* Muestra el menú al pasar el cursor sobre el contenedor */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Layout Principal */
-.x-k9-seccion {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  width: 100%;
-  max-width: 1400px;
-  margin: 30px auto;
-  padding: 0 15px;
-  box-sizing: border-box;
-}
-
-/* Columnas */
-.bloque-omega-9 {
-  display: flex;
-}
-
-.bloque-zeta-7 {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Bloques internos */
-.duo-kraken {
-  display: flex;
-  gap: 15px;
-}
-
-.caja-vortex {
-  flex: 1;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 100%; 
-}
-
-.caja-vortex img {
-  width: 100%;
-  height: 100%;
-  max-height: 300px;
-  display: block;
-  object-fit: cover;
-}
-
-/* --- AJUSTE PARA EL SLIDER TÚNEL-NÉBULA --- */
-
-/* Slider Loco */
-.orbita-hyperion {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.tunel-nebula {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.pista-quantum {
-  display: flex;
-  /* La transición se manejará por JS para poder apagarla en los saltos del bucle */
-}
-
-.capsula-slide {
-  flex: 0 0 calc(50% - 10px);
-  margin-right: 20px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 220px;            /* Define una altura fija y uniforme para las tarjetas */
-  background-color: #ffffff;/* Fondo limpio para imágenes transparentes o pequeñas */
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-/* Control para que la imagen encaje sin distorsionarse */
-.capsula-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;      /* Cambiado de 'cover' a 'contain' para que encaje completa */
-  padding: 10px;            /* Espaciado interno para que no toque los bordes */
-  box-sizing: border-box;
-}
-
-/* Botones Flechas */
-.flecha-cyber {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border: none;
-  font-size: 18px;
-  padding: 10px 14px;
-  cursor: pointer;
-  border-radius: 50%;
-  z-index: 10;
-  transition: background 0.3s;
-}
-
-.flecha-cyber:hover {
-  background: rgba(0, 0, 0, 0.9);
-}
-
-.flecha-cyber.ant { left: -15px; }
-.flecha-cyber.sig { right: -15px; }
-
-
-/* ================= MEDIA QUERIES OPTIMIZADAS PARA CELULARES ================= */
-
+/* ================= ADAPTACIÓN EXCLUSIVA PARA CELULARES ================= */
 @media (max-width: 992px) {
   .mini-box {
     flex: 0 0 calc((100% - (15px * 2)) / 3);
@@ -717,33 +601,84 @@ hr {
 }
 
 @media (max-width: 768px) {
-  /* Header adaptable */
-  .header-container {
-    flex-wrap: wrap;
-  }
-  .search-box {
-    order: 3;
-    max-width: 100%;
-    width: 100%;
+  /* Reorganización en capas del Header */
+  .header-main {
+    padding: 10px 15px;
   }
 
-  /* Slider principal */
+  .header-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px 0;
+  }
+
+  /* Capa 1: Logo y Menú en la parte superior */
+  .logo-container {
+    order: 1;
+  }
+
+  .logo {
+    width: 45px;
+    height: 45px;
+    border-width: 2px;
+  }
+
+  .menu-wrapper {
+    order: 2;
+  }
+
+  .menu-btn {
+    font-size: 0.9rem;
+  }
+
+  /* Capa 2: Buscador ancho completo */
+  .search-box {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 2px;
+  }
+
+  /* Capa 3: Navegación de usuario horizontal */
+  .header-links {
+    order: 4;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .nav-item {
+    font-size: 0.78rem;
+  }
+
+  .header-banner {
+    font-size: 0.75rem;
+    padding: 6px 5px;
+  }
+
+  /* Sliders */
   .slider-track {
     padding: 0;
   }
+
   .slide {
     flex: 0 0 100%;
-    height: 260px;
+    height: 230px;
   }
+
   .arrow-left { left: 5px; }
   .arrow-right { right: 5px; }
 
-  /* Publicidad */
+  /* Contenido general y Footer */
   .caja-publicidad {
     flex-direction: column;
   }
 
-  /* Footer */
   .footer-content {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -755,16 +690,6 @@ hr {
     text-align: center;
   }
 
-  /* Grid principal */
-  .x-k9-seccion {
-    grid-template-columns: 1fr;
-  }
-  
-  .duo-kraken {
-    flex-direction: column;
-  }
-
-  /* Ajustes Slider Túnel-Nébula */
   .capsula-slide {
     flex: 0 0 100%;
     margin-right: 0;
@@ -775,16 +700,15 @@ hr {
 }
 
 @media (max-width: 576px) {
-  /* Texto y padding responsivos */
   .parrafo-slider {
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 15px;
   }
 
-  /* Mini slider en 2 columnas para celular */
   .mini-slider-container {
-    padding: 10px 20px;
+    padding: 10px 15px;
   }
+
   .mini-box {
     flex: 0 0 calc((100% - 15px) / 2);
   }

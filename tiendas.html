@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GINE - Tiendas Disponibles y Contacto</title>
+  <link rel="stylesheet" href="menu/estilos.css">
+  <style>
+    /* Estilos y animaciones de la nueva página */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tiendas-container {
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .card-panel {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      backdrop-filter: blur(5px);
+    }
+
+    .titulo-seccion {
+      color: #083347;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      border-bottom: 3px solid #083347;
+      padding-bottom: 8px;
+    }
+
+    /* Mapa de Google Responsive */
+    .map-container {
+      width: 100%;
+      height: 350px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid #083347;
+      margin-bottom: 20px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Lista de Ferreterías con animaciones */
+    .ferreterias-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ferreteria-item {
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 5px solid #083347;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .ferreteria-item:hover {
+      transform: translateX(8px);
+      box-shadow: 0 6px 15px rgba(8, 51, 71, 0.2);
+    }
+
+    .ferreteria-item h4 {
+      color: #083347;
+      margin-bottom: 5px;
+    }
+
+    .ferreteria-item p {
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    /* Formulario de contacto */
+    .form-contacto {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: #083347;
+    }
+
+    .btn-enviar {
+      background: #083347;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-enviar:hover {
+      background: #0e42b3;
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 900px) {
+      .tiendas-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado idéntico -->
+  <header class="header">
+    <div class="header-main">
+      <div class="header-container">
+        <div><img src="menu/logo.png" class="logo" alt="Logo"></div>
+
+        <div class="menu-wrapper">
+          <button class="menu-btn"><span class="hamburger">☰</span> Menú ▾</button>
+          <ul class="dropdown-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Categorías</a></li>
+            <li><a href="#">Ofertas</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="search-box">
+          <input type="text" placeholder="¿Qué herramientas estás buscando?">
+          <button class="search-btn">🔍</button>
+        </div>
+
+        <nav class="header-links">
+          <a href="#" class="nav-item">Encuentra tu tienda</a>
+          <a href="iniciarseccion.html" class="nav-item user-icon">Inicia sesión ▾</a>
+          <a href="#" class="nav-item cart-icon">Compras</a>
+        </nav>
+      </div>
+    </div>
+    <div class="header-banner">
+      <strong>ENVÍOS GRATIS</strong> En todos los productos por compras mayores a $ 50.000*
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="tiendas-container">
+    
+    <!-- Panel Izquierdo: Mapa y Ferreterías -->
+    <section class="card-panel fade-in-section">
+      <h2 class="titulo-seccion"> Ferreterías Aliadas Disponibles</h2>
+      
+      <!-- Mapa de Google Embed -->
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.786523912198!2d-74.072092!3d4.650833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMzknMDMuMCJOIDc0wrAwNCcxOS41Ilc!5e0!3m2!1ses!2sco!4v1620000000000!5m2!1ses!2sco" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <!-- Lista de tiendas -->
+      <div class="ferreterias-list">
+        <div class="ferreteria-item">
+          <h4>Ferretería El Martillo Central</h4>
+          <p> Tel: +57 300 123 4567 | 🕒 Lun-Sáb: 8:00 AM - 6:00 PM</p>
+          <p> Av. Principal #45-12</p>
+        </div>
+        <div class="ferreteria-item">
+          <h4>Suministros e Industriales GINE</h4>
+          <p> Tel: +57 311 987 6543 | 🕒 Lun-Sáb: 7:30 AM - 7:00 PM</p>
+          <p> Calle de las Herramientas #10-88</p>
+        </div>
+        <div class="ferreteria-item">
+          <h4>MegaFerretería Del Sur</h4>
+          <p> Tel: +57 320 555 0192 | 🕒 Lun-Dom: 8:00 AM - 5:00 PM</p>
+          <p> Carrera 15 #33-01</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel Derecho: Formulario de Contacto -->
+    <section class="card-panel fade-in-section" style="animation-delay: 0.2s;">
+      <h2 class="titulo-seccion"> Contáctanos</h2>
+      <p style="margin-bottom: 15px; color: #555;">¿Tienes dudas sobre disponibilidad o envíos? Escríbenos directamente.</p>
+      
+      <form class="form-contacto" onsubmit="event.preventDefault(); alert('¡Mensaje enviado!');">
+        <div class="form-group">
+          <input type="text" placeholder="Tu Nombre Completo" required>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Correo Electrónico" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" placeholder="Número de Teléfono">
+        </div>
+        <div class="form-group">
+          <textarea rows="5" placeholder="¿En qué te podemos ayudar?" required></textarea>
+        </div>
+        <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+      </form>
+    </section>
+
+  </main>
+
+  <script src="menu/script.js"></script>
+
+  <!-- Pie de página idéntico -->
+  <footer class="footer-container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h2 class="footer-logo">GINE<span>.</span></h2>
+        <p class="footer-description">Facilitamos conexiones seguras y transparentes entre compradores y vendedores.</p>
+        <div class="badges">
+          <span class="badge">🔒 Transacción Segura</span>
+          <span class="badge">🤝 Garantía Mediada</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Para Compradores</h3>
+        <ul>
+          <li><a href="#">Explorar Mercado</a></li>
+          <li><a href="#">Protección al Comprador</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3>Para Vendedores</h3>
+        <ul>
+          <li><a href="#">Vender en la Plataforma</a></li>
+          <li><a href="#">Centro de Vendedores</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3>Centro de Confianza</h3>
+        <ul>
+          <li><a href="#">Términos del Servicio</a></li>
+          <li><a href="#">Soporte 24/7</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 GINE Inc. Todos los derechos reservados.</p>
+      <div class="social-links">
+        <a href="#">LinkedIn</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

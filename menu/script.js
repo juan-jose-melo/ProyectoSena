@@ -15,22 +15,6 @@ if (menuBtn && dropdownMenu) {
   });
 }
 
-// ================= CONTROLADOR GLOBAL DE SLIDERS =================
-let autoSlideInterval;
-
-function startGlobalAutoSlide() {
-  autoSlideInterval = setInterval(() => {
-    if (typeof mainIndex !== 'undefined') moveMainSlide(mainIndex + 1);
-    if (typeof miniIndex !== 'undefined') moveMiniSlide(miniIndex + 1);
-    moveQuantumSlider(posSub + 1); // Avanza el slider de publicidad
-  }, 4000);
-}
-
-function resetGlobalAutoSlide() {
-  clearInterval(autoSlideInterval);
-  startGlobalAutoSlide();
-}
-
 // ================= SLIDER PRINCIPAL =================
 const track = document.getElementById('sliderTrack');
 const prevBtn = document.getElementById('prevBtn');
@@ -41,6 +25,18 @@ let mainIndex = 1;
 let isMainTransitioning = false;
 let totalMainOriginals = 0;
 let allMainSlides = [];
+let mainAutoSlideInterval;
+
+function startMainAutoSlide() {
+  mainAutoSlideInterval = setInterval(() => {
+    if (typeof moveMainSlide === 'function') moveMainSlide(mainIndex + 1);
+  }, 4000);
+}
+
+function resetMainAutoSlide() {
+  clearInterval(mainAutoSlideInterval);
+  startMainAutoSlide();
+}
 
 if (track && prevBtn && nextBtn && dotsContainer) {
   let mainOriginals = Array.from(track.querySelectorAll('.slide'));
@@ -62,9 +58,13 @@ if (track && prevBtn && nextBtn && dotsContainer) {
     }
 
     function setMainTrackPosition(index, animate = true) {
-      const slideWidth = getMainSlideWidth();
+      const slideWidth = allMainSlides[0].getBoundingClientRect().width;
+      const gap = 20;
+      const viewportWidth = track.parentElement.getBoundingClientRect().width;
+      const offset = (viewportWidth - slideWidth) / 2;
+    
       track.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
-      track.style.transform = `translateX(-${index * slideWidth}px)`;
+      track.style.transform = `translateX(-${(index * (slideWidth + gap)) - offset}px)`;
       updateDots();
     }
 
@@ -98,23 +98,24 @@ if (track && prevBtn && nextBtn && dotsContainer) {
 
     nextBtn.addEventListener('click', () => {
       moveMainSlide(mainIndex + 1);
-      resetGlobalAutoSlide();
+      resetMainAutoSlide();
     });
 
     prevBtn.addEventListener('click', () => {
       moveMainSlide(mainIndex - 1);
-      resetGlobalAutoSlide();
+      resetMainAutoSlide();
     });
 
     const dots = dotsContainer.querySelectorAll('.dot');
     dots.forEach((dot, index) => {
       dot.addEventListener('click', () => {
         moveMainSlide(index + 1);
-        resetGlobalAutoSlide();
+        resetMainAutoSlide();
       });
     });
 
     setMainTrackPosition(mainIndex, false);
+    startMainAutoSlide();
   }
 }
 
@@ -127,6 +128,18 @@ let miniIndex = 5;
 let isMiniTransitioning = false;
 let totalMiniOriginals = 0;
 let visibleCount = 5;
+let miniAutoSlideInterval;
+
+function startMiniAutoSlide() {
+  miniAutoSlideInterval = setInterval(() => {
+    if (typeof moveMiniSlide === 'function') moveMiniSlide(miniIndex + 1);
+  }, 4500);
+}
+
+function resetMiniAutoSlide() {
+  clearInterval(miniAutoSlideInterval);
+  startMiniAutoSlide();
+}
 
 if (miniTrack && miniPrevBtn && miniNextBtn) {
   let miniOriginals = Array.from(miniTrack.querySelectorAll('.mini-box'));
@@ -175,17 +188,16 @@ if (miniTrack && miniPrevBtn && miniNextBtn) {
 
     miniNextBtn.addEventListener('click', () => {
       moveMiniSlide(miniIndex + 1);
-      if (typeof moveMainSlide === 'function') moveMainSlide(mainIndex + 1);
-      resetGlobalAutoSlide();
+      resetMiniAutoSlide();
     });
 
     miniPrevBtn.addEventListener('click', () => {
       moveMiniSlide(miniIndex - 1);
-      if (typeof moveMainSlide === 'function') moveMainSlide(mainIndex - 1);
-      resetGlobalAutoSlide();
+      resetMiniAutoSlide();
     });
 
     setMiniTrackPosition(miniIndex, false);
+    startMiniAutoSlide();
   }
 }
 
@@ -194,9 +206,21 @@ const pistaQ = document.getElementById('pistaQuantum');
 const btnZPrev = document.getElementById('btnZipPrev');
 const btnZNext = document.getElementById('btnZipNext');
 
-let posSub = 2; // Inicia en 2 por los clones del HTML
+let posSub = 2;
 const totalOriginalesPublicidad = 6;
 let enTransicionQuantum = false;
+let quantumAutoSlideInterval;
+
+function startQuantumAutoSlide() {
+  quantumAutoSlideInterval = setInterval(() => {
+    moveQuantumSlider(posSub + 1);
+  }, 5000);
+}
+
+function resetQuantumAutoSlide() {
+  clearInterval(quantumAutoSlideInterval);
+  startQuantumAutoSlide();
+}
 
 function setQuantumPosition(index, conAnimacion = true) {
   if (!pistaQ) return;
@@ -215,12 +239,10 @@ if (pistaQ) {
   pistaQ.addEventListener('transitionend', () => {
     enTransicionQuantum = false;
 
-    // Salto invisible cuando llega al final
     if (posSub >= totalOriginalesPublicidad + 2) {
       posSub = 2;
       setQuantumPosition(posSub, false);
     }
-    // Salto invisible cuando retrocede al inicio
     if (posSub <= 0) {
       posSub = totalOriginalesPublicidad;
       setQuantumPosition(posSub, false);
@@ -228,17 +250,18 @@ if (pistaQ) {
   });
 
   setQuantumPosition(posSub, false);
+  startQuantumAutoSlide();
 }
 
 if (btnZNext && btnZPrev) {
   btnZNext.addEventListener('click', () => {
     moveQuantumSlider(posSub + 1);
-    resetGlobalAutoSlide();
+    resetQuantumAutoSlide();
   });
 
   btnZPrev.addEventListener('click', () => {
     moveQuantumSlider(posSub - 1);
-    resetGlobalAutoSlide();
+    resetQuantumAutoSlide();
   });
 }
 
@@ -247,6 +270,3 @@ window.addEventListener('resize', () => {
   if (typeof setMainTrackPosition === 'function') setMainTrackPosition(mainIndex, false);
   if (typeof setMiniTrackPosition === 'function') setMiniTrackPosition(miniIndex, false);
 });
-
-// Inicializar el movimiento automático global
-startGlobalAutoSlide();
