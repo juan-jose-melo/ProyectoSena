@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GINE - Tiendas Disponibles y Contacto</title>
+  <link rel="stylesheet" href="menu/estilos.css">
+  <link rel="stylesheet" href="tiendas/estilos.css">
+</head>
+<body>
+
+  <!-- Encabezado idéntico -->
+  <header class="header">
+    <div class="header-main">
+      <div class="header-container">
+        <div><img src="menu/logo.png" class="logo" alt="Logo"></div>
+
+        <div class="menu-wrapper">
+          <button class="menu-btn"><span class="hamburger">☰</span> Menú ▾</button>
+          <ul class="dropdown-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Categorías</a></li>
+            <li><a href="#">Ofertas</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="search-box">
+          <input type="text" placeholder="¿Qué herramientas estás buscando?">
+          <button class="search-btn">🔍</button>
+        </div>
+
+        <nav class="header-links">
+          <a href="#" class="nav-item">Encuentra tu tienda</a>
+          <a href="iniciarseccion.html" class="nav-item user-icon">Inicia sesión ▾</a>
+          <a href="#" class="nav-item cart-icon">Compras</a>
+        </nav>
+      </div>
+    </div>
+    <div class="header-banner">
+      <strong>ENVÍO GRATIS</strong> En todos los productos por compras mayores a $ 50.000*
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="tiendas-container">
+    
+    <!-- NUEVO ESPACIO PARA DESCRIPCIÓN -->
+    <section class="card-panel fade-in-section descripcion-panel">
+      <h2 class="titulo-seccion">Descripcion de este producto</h2>
+      <p class="texto-descripcion">
+        Equipo compacto que almacena aire a presión para alimentar herramientas neumáticas y realizar tareas de inflado y mantenimiento.<br>
+
+ <p class="texto"><strong>¿Por qué comprarla?<br></strong>
+
+Es práctico y versátil para trabajos en casa, taller o garaje. Su capacidad de 24 litros ofrece una buena reserva de aire para tareas frecuentes.<br>
+
+  <strong>¿Cómo se usa?</strong><br>
+   Conecta el compresor a la corriente.<br>
+Conecta la manguera y herramienta.<br>
+Ajusta la presión necesaria.<br>
+Enciéndelo y comienza el trabajo.<br>
+</p>
+      </p>
+    </section>
+
+    <!-- Panel Izquierdo: Mapa y Ferreterías -->
+    <section class="card-panel fade-in-section" style="animation-delay: 0.1s;">
+      <h2 class="titulo-seccion"> Ferreterías Aliadas Disponibles</h2>
+      
+      <!-- Mapa de Google Embed -->
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.786523912198!2d-74.072092!3d4.650833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMzknMDMuMCJOIDc0wrAwNCcxOS41Ilc!5e0!3m2!1ses!2sco!4v1620000000000!5m2!1ses!2sco" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <!-- Lista de tiendas -->
+      <div class="ferreterias-list">
+        <div class="ferreteria-item">
+          <h4>Ferretería El Martillo Central</h4>
+          <p> Tel: +57 300 123 4567 |  Lun-Sáb: 8:00 AM - 6:00 PM</p>
+          <p> Av. Principal #45-12</p>
+        </div>
+        <div class="ferreteria-item">
+          <h4>Suministros e Industriales GINE</h4>
+          <p> Tel: +57 311 987 6543 |  Lun-Sáb: 7:30 AM - 7:00 PM</p>
+          <p> Calle de las Herramientas #10-88</p>
+        </div>
+        <div class="ferreteria-item">
+          <h4>MegaFerretería Del Sur</h4>
+          <p> Tel: +57 320 555 0192 |  Lun-Dom: 8:00 AM - 5:00 PM</p>
+          <p> Carrera 15 #33-01</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel Derecho: Formulario de Contacto -->
+    <section class="card-panel fade-in-section" style="animation-delay: 0.2s;">
+      <h2 class="titulo-seccion"> Contáctanos</h2>
+      <p style="margin-bottom: 15px; color: #555;">¿Tienes dudas sobre disponibilidad o envíos? Escríbenos directamente.</p>
+      
+      <form class="form-contacto" onsubmit="event.preventDefault(); alert('¡Mensaje enviado!');">
+        <div class="form-group">
+          <input type="text" placeholder="Tu Nombre Completo" required>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Correo Electrónico" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" placeholder="Número de Teléfono">
+        </div>
+        <div class="form-group">
+          <textarea rows="5" placeholder="¿En qué te podemos ayudar?" required></textarea>
+        </div>
+        <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+      </form>
+    </section>
+
+  </main>
+
+  <script src="menu/script.js"></script>
+
+  <!-- Pie de página idéntico -->
+  <footer class="footer-container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h2 class="footer-logo">GINE<span>.</span></h2>
+        <p class="footer-description">Facilitamos conexiones seguras y transparentes entre compradores y vendedores.</p>
+        <div class="badges">
+          <span class="badge">🔒 Transacción Segura</span>
+          <span class="badge">🤝 Garantía Mediada</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Para Compradores</h3>
+        <ul>
+          <li><a href="#">Explorar Mercado</a></li>
+          <li><a href="#">Protección al Comprador</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3>Para Vendedores</h3>
+        <ul>
+          <li><a href="#">Vender en la Plataforma</a></li>
+          <li><a href="#">Centro de Vendedores</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3>Centro de Confianza</h3>
+        <ul>
+          <li><a href="#">Términos del Servicio</a></li>
+          <li><a href="#">Soporte 24/7</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 GINE Inc. Todos los derechos reservados.</p>
+      <div class="social-links">
+        <a href="#">LinkedIn</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

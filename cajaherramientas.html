@@ -5,135 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GINE - Tiendas Disponibles y Contacto</title>
   <link rel="stylesheet" href="menu/estilos.css">
-  <style>
-    /* Estilos y animaciones de la nueva página */
-    .fade-in-section {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .tiendas-container {
-      max-width: 1400px;
-      margin: 40px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-    }
-
-    .card-panel {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      backdrop-filter: blur(5px);
-    }
-
-    .titulo-seccion {
-      color: #083347;
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      border-bottom: 3px solid #083347;
-      padding-bottom: 8px;
-    }
-
-    /* Mapa de Google Responsive */
-    .map-container {
-      width: 100%;
-      height: 350px;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 2px solid #083347;
-      margin-bottom: 20px;
-    }
-
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* Lista de Ferreterías con animaciones */
-    .ferreterias-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .ferreteria-item {
-      background: #ffffff;
-      padding: 15px;
-      border-radius: 8px;
-      border-left: 5px solid #083347;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .ferreteria-item:hover {
-      transform: translateX(8px);
-      box-shadow: 0 6px 15px rgba(8, 51, 71, 0.2);
-    }
-
-    .ferreteria-item h4 {
-      color: #083347;
-      margin-bottom: 5px;
-    }
-
-    .ferreteria-item p {
-      color: #555;
-      font-size: 0.9rem;
-    }
-
-    /* Formulario de contacto */
-    .form-contacto {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .form-group input, .form-group textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      outline: none;
-      transition: border-color 0.3s ease;
-    }
-
-    .form-group input:focus, .form-group textarea:focus {
-      border-color: #083347;
-    }
-
-    .btn-enviar {
-      background: #083347;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    .btn-enviar:hover {
-      background: #0e42b3;
-      transform: scale(1.02);
-    }
-
-    @media (max-width: 900px) {
-      .tiendas-container {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="tiendas/estilos.css">
 </head>
 <body>
 
@@ -166,15 +38,35 @@
       </div>
     </div>
     <div class="header-banner">
-      <strong>ENVÍOS GRATIS</strong> En todos los productos por compras mayores a $ 50.000*
+      <strong>ENVÍO GRATIS</strong> En todos los productos por compras mayores a $ 50.000*
     </div>
   </header>
 
   <!-- Contenido principal -->
   <main class="tiendas-container">
     
+    <!-- NUEVO ESPACIO PARA DESCRIPCIÓN -->
+    <section class="card-panel fade-in-section descripcion-panel">
+      <h2 class="titulo-seccion">Descripcion de este producto</h2>
+      <p class="texto-descripcion">
+        Kit de herramientas práctico y versátil para realizar reparaciones, mantenimiento y trabajos manuales en casa, taller o vehículo.<br>
+
+ <p class="texto"><strong>¿Por qué comprarla?<br></strong>
+
+    Te permite tener las herramientas más necesarias en un solo lugar, evitando compras por separado.<br> Es una opción práctica para ahorrar tiempo y estar preparado ante cualquier reparación.<br>
+
+  <strong>¿Cómo se usa?</strong><br>
+   Identifica lo que necesitas reparar.<br>
+Escoge la herramienta adecuada.<br>
+Úsala correctamente y con cuidado.<br>
+Límpiala y guárdala en la caja.<br>
+Su variedad de herramientas la convierte en una opción completa y conveniente para diferentes tareas.
+</p>
+      </p>
+    </section>
+
     <!-- Panel Izquierdo: Mapa y Ferreterías -->
-    <section class="card-panel fade-in-section">
+    <section class="card-panel fade-in-section" style="animation-delay: 0.1s;">
       <h2 class="titulo-seccion"> Ferreterías Aliadas Disponibles</h2>
       
       <!-- Mapa de Google Embed -->
