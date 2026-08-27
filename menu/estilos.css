@@ -441,67 +441,145 @@ hr {
   display: block;
   object-fit: cover;
 }
+/* ================= ultimo slider ================= */
 
-/* ================= SLIDER NEBULA ================= */
-.orbita-hyperion {
+/* CONTENEDOR PRINCIPAL - SEPARACIÓN DE 20PX */
+/* CONTENEDOR PRINCIPAL - SEPARACIÓN DE 20PX */
+.contenedor-principalrrr {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  height: 500px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+/* ESTILO BASE DE LAS CAJAS */
+.cajarrr {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  border: 2px solid #333333;
+  overflow: hidden;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* 1. CAJA GRANDE VERTICAL (IZQUIERDA) - IMAGEN COMPLETA */
+.caja-granderrr {
+  flex: 1;
   position: relative;
   display: flex;
   align-items: center;
-}
-
-.tunel-nebula {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.pista-quantum {
-  display: flex;
-}
-
-.capsula-slide {
-  flex: 0 0 calc(50% - 10px);
-  margin-right: 20px;
-  box-sizing: border-box;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  height: 220px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
+  border-left: 6px solid #ffcc00; /* Borde de acento amarillo */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
 }
 
-.capsula-slide img {
+.img-caja-granderrr {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 10px;
+  object-fit: cover; /* Ajusta la imagen para cubrir toda la caja sin deformarse */
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Efecto hover suave para la imagen grande */
+.caja-granderrr:hover .img-caja-granderrr {
+  transform: scale(1.03);
+  filter: brightness(1.08);
+}
+
+/* COLUMNA DERECHA */
+.columna-derecharrr {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 2. CAJA SUPERIOR DERECHA */
+.caja-superiorrrr {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #242424;
+  border-top: 4px solid #ffcc00;
+  text-align: center;
+}
+
+/* 3. CAJA INFERIOR DERECHA (SLIDER INFINITO) */
+.caja-sliderrrr {
+  flex: 1;
+  background-color: #111111;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border: 1px solid #ffcc0033;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(255, 204, 0, 0.05);
+}
+
+.slider-containerrrr {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
+}
+
+.slider-trackrrr {
+  display: flex;
+  width: calc((100% / 3) * 10);
+  animation: scrollInfinito 15s linear infinite;
+}
+
+.sliderrr {
+  width: calc(100% / 10);
+  padding: 0 10px;
   box-sizing: border-box;
 }
 
-.flecha-cyber {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border: none;
-  font-size: 18px;
-  padding: 10px 14px;
+.sliderrr a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+
+/* ESTILOS DE IMÁGENES DEL SLIDER CON HOVER Y SHADOW ELEGANTE */
+.sliderrr img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #444444;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
-  border-radius: 50%;
-  z-index: 10;
-  transition: background 0.3s;
 }
 
-.flecha-cyber:hover {
-  background: rgba(0, 0, 0, 0.9);
+/* EFECTO HOVER EN LAS IMÁGENES DEL SLIDER */
+.sliderrr img:hover {
+  transform: scale(1.06);
+  border-color: #ffcc00;
+  box-shadow: 0 8px 16px rgba(255, 204, 0, 0.35);
 }
 
-.flecha-cyber.ant { left: -15px; }
-.flecha-cyber.sig { right: -15px; }
+/* Pausar la animación al pasar el cursor */
+.slider-containerrrr:hover .slider-trackrrr {
+  animation-play-state: paused;
+}
+
+/* ANIMACIÓN SLIDER INFINITO */
+@keyframes scrollInfinito {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
 /* ================= FOOTER ================= */
 .footer-container {
