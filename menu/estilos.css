@@ -445,13 +445,17 @@ hr {
 
 /* CONTENEDOR PRINCIPAL - SEPARACIÓN DE 20PX */
 /* CONTENEDOR PRINCIPAL - SEPARACIÓN DE 20PX */
+/* CONTENEDOR PRINCIPAL */
+/* CONTENEDOR PRINCIPAL (+50px más ancho) */
 .contenedor-principalrrr {
   display: flex;
   gap: 20px;
   width: 100%;
-  max-width: 1200px;
+  /* Usa el mismo max-width que tenga tu contenedor superior (ej. 1200px o 100%) */
+  max-width: 1200px; 
   height: 500px;
-  margin: 20px auto;
+  margin: 20px auto; /* "auto" lo centra exactamente igual que arriba */
+  padding: 0; /* Asegura que no tenga padding extra a los lados */
   box-sizing: border-box;
 }
 
@@ -465,14 +469,16 @@ hr {
   box-sizing: border-box;
 }
 
-/* 1. CAJA GRANDE VERTICAL (IZQUIERDA) - IMAGEN COMPLETA */
+/* 1. CAJA GRANDE VERTICAL (IZQUIERDA) - CORREGIDA */
 .caja-granderrr {
   flex: 1;
+  width: 50%;
+  height: 100%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 6px solid #ffcc00; /* Borde de acento amarillo */
+  border-left: 6px solid #ffcc00;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
   cursor: pointer;
 }
@@ -480,12 +486,11 @@ hr {
 .img-caja-granderrr {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ajusta la imagen para cubrir toda la caja sin deformarse */
+  object-fit: cover;
   display: block;
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-/* Efecto hover suave para la imagen grande */
 .caja-granderrr:hover .img-caja-granderrr {
   transform: scale(1.03);
   filter: brightness(1.08);
@@ -494,15 +499,18 @@ hr {
 /* COLUMNA DERECHA */
 .columna-derecharrr {
   flex: 1;
+  width: 50%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 100%;
 }
 
 /* 2. CAJA SUPERIOR DERECHA */
 .caja-superiorrrr {
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
@@ -520,6 +528,7 @@ hr {
   padding: 10px 0;
   border: 1px solid #ffcc0033;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(255, 204, 0, 0.05);
+  width: 100%;
 }
 
 .slider-containerrrr {
@@ -531,12 +540,13 @@ hr {
 
 .slider-trackrrr {
   display: flex;
-  width: calc((100% / 3) * 10);
+  width: calc(180px * 10);
   animation: scrollInfinito 15s linear infinite;
 }
 
 .sliderrr {
-  width: calc(100% / 10);
+  width: 180px;
+  flex-shrink: 0;
   padding: 0 10px;
   box-sizing: border-box;
 }
@@ -547,7 +557,6 @@ hr {
   text-decoration: none;
 }
 
-/* ESTILOS DE IMÁGENES DEL SLIDER CON HOVER Y SHADOW ELEGANTE */
 .sliderrr img {
   width: 100%;
   height: 110px;
@@ -559,25 +568,49 @@ hr {
   cursor: pointer;
 }
 
-/* EFECTO HOVER EN LAS IMÁGENES DEL SLIDER */
 .sliderrr img:hover {
   transform: scale(1.06);
   border-color: #ffcc00;
   box-shadow: 0 8px 16px rgba(255, 204, 0, 0.35);
 }
 
-/* Pausar la animación al pasar el cursor */
 .slider-containerrrr:hover .slider-trackrrr {
   animation-play-state: paused;
 }
 
-/* ANIMACIÓN SLIDER INFINITO */
 @keyframes scrollInfinito {
-  0% {
-    transform: translateX(0);
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* RESPONSIVE CELULARES */
+@media (max-width: 768px) {
+  .contenedor-principalrrr {
+    flex-direction: column;
+    height: auto;
+    padding: 0 10px;
   }
-  100% {
-    transform: translateX(-50%);
+
+  .caja-granderrr, 
+  .columna-derecharrr {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .caja-granderrr {
+    height: 350px;
+  }
+
+  .sliderrr {
+    width: 140px;
+  }
+
+  .slider-trackrrr {
+    width: calc(140px * 10);
+  }
+
+  .sliderrr img {
+    height: 90px;
   }
 }
 

@@ -1,11 +1,11 @@
 :root {
-  --bg-dark: #0f172a;
-  --card-bg: rgba(30, 41, 59, 0.5); 
-  --accent-gold: #06afd9;
-  --accent-hover: #09a0b4;
+  --bg-dark: #000;
+  --card-bg: rgba(0, 0, 0, 0.5); 
+  --accent-gold: rgba(5, 5, 2, 0.5);
+  --accent-hover: rgba(112, 105, 7, 0.089);
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
-  --input-bg: rgba(15, 23, 42, 0.7);
+  --input-bg: rgba(2, 2, 2, 0.7);
   --border-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -19,7 +19,7 @@ body {
   align-items: center;
   min-height: 100vh;
   
-  background-image: url('iniica.png');
+  background-image: url('nose.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -93,7 +93,7 @@ body {
 .btn-primary:hover {
   background-color: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(6, 175, 217, 0.4);
+  box-shadow: 0 4px 12px #8e9707
 }
 
 .btn-secondary {
@@ -140,7 +140,7 @@ body {
 }
 
 .card-footer p a:hover {
-  color: #0b8cf5;
+  color: #8e9707;
   text-decoration: underline;
 }
 
