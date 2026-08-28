@@ -4,7 +4,9 @@
   padding: 0;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
-
+h3{
+  color: #fdfdfd;
+}
 :root {
   --bg-dark: #5c5c5c;
   --bg-card: #c0b522;
