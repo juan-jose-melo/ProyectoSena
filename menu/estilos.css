@@ -246,7 +246,9 @@ hr {
 
 .arrow {
   position: absolute;
-  top: 50%;
+  /* Modificamos el cálculo para que se centre en los 420px de la imagen, 
+     ignorando el espacio que ocupan los dots de abajo */
+  top: calc(570px / 2);
   transform: translateY(-50%);
   background-color: rgba(75, 76, 77, 0.85);
   color: #ffffff;
@@ -257,7 +259,7 @@ hr {
   border-radius: 50%;
   cursor: pointer;
   z-index: 20;
-  box-shadow: 0 4px 10px rgba(0, 0, 0,0.20);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.20);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -272,6 +274,17 @@ hr {
 
 .arrow-left { left: 30px; }
 .arrow-right { right: 30px; }
+
+@media (max-width: 768px) {
+  .arrow {
+    /* En pantallas pequeñas tu .slide pasa a medir 230px de alto, 
+       así que adaptamos el centro aquí también */
+    top: calc(380px / 2); 
+  }
+  
+  .arrow-left { left: 10px; }
+  .arrow-right { right: 10px; }
+}
 
 .dots-container {
   display: flex;
@@ -301,12 +314,14 @@ hr {
   margin: 20px auto 50px;
   padding: 10px 40px;
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden; /* Esto evitará que el track clonado se vea a los lados */
 }
 
 .mini-slider-viewport {
   width: 100%;
-  overflow: hidden;
+  overflow: visible; /* Cambiar a visible para que las flechas que sobresalen no se corten */
   padding: 15px 0;
+  position: relative; 
 }
 
 .mini-slider-track {
@@ -412,8 +427,8 @@ hr {
    box-shadow: 0 2px 8px rgb(238, 123, 7);
 }
 
-.mini-arrow-left { left: 0; }
-.mini-arrow-right { right: 0; }
+.mini-arrow-left { left: - 25px; }
+.mini-arrow-right { right: -25px; }
 
 /* ================= CAJA PUBLICIDAD ================= */
 .caja-publicidad {

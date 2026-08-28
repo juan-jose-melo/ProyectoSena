@@ -162,7 +162,7 @@ body {
   border-color: var(--accent-gold);
   color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(6, 175, 217, 0.3);
+  box-shadow: 0 4px 12px #8e9707;
 }
 
 .hidden {
