@@ -6,7 +6,7 @@
 }
 
 :root {
-  --bg-dark: #555554;
+  --bg-dark: #5c5c5c;
   --bg-card: #c0b522;
   --text-main: #f8fafc;
   --text-muted: #d8d8da;
@@ -18,7 +18,7 @@
 body {
   background-color: #e3e8eb;
   background-image: 
-    linear-gradient(rgb(253, 254, 255), rgb(170, 170, 170), rgb(94, 94, 94)), 
+    linear-gradient(rgb(252, 252, 252), rgb(136, 136, 136), rgb(14, 13, 13)), 
     url('pulidora.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -37,8 +37,17 @@ p.parrafo-slider {
 
 hr {
   border: none;
-  border-top: 5px dashed #0f0f0f;
-  box-shadow:black ;
+  height: 6px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #f5b000,
+    #f5b000 15px,
+    #1a1a1a 15px,
+    #1a1a1a 30px
+  );
+  margin: 40px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
 }
 
 /* ================= HEADER (PC Y ESCRITORIO) ================= */
@@ -47,11 +56,11 @@ hr {
 }
 
 .header-main {
-  background-image: url('menu.PNG');
+  background: repeating-linear-gradient(orange, yellow);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 12px 20px;
   width: 100%;
 }
@@ -91,7 +100,7 @@ hr {
 .menu-btn {
   background: transparent;
   border: none;
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
@@ -105,7 +114,7 @@ hr {
   position: absolute;
   top: calc(100% + 12px);
   left: 0;
-  background-color: #ffffff;
+  background-color: #000000;
   min-width: 180px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
   list-style: none;
@@ -125,7 +134,7 @@ hr {
 }
 
 .dropdown-menu li a:hover {
-  background-color: #f1f1f1;
+  background-color: #000000;
   color: #6b6f72;
 }
 
@@ -432,67 +441,178 @@ hr {
   display: block;
   object-fit: cover;
 }
+/* ================= ultimo slider ================= */
 
-/* ================= SLIDER NEBULA ================= */
-.orbita-hyperion {
+/* CONTENEDOR PRINCIPAL - SEPARACIÓN DE 20PX */
+/* CONTENEDOR PRINCIPAL - SEPARACIÓN DE 20PX */
+/* CONTENEDOR PRINCIPAL */
+/* CONTENEDOR PRINCIPAL (+50px más ancho) */
+.contenedor-principalrrr {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  /* Usa el mismo max-width que tenga tu contenedor superior (ej. 1200px o 100%) */
+  max-width: 1200px; 
+  height: 500px;
+  margin: 20px auto; /* "auto" lo centra exactamente igual que arriba */
+  padding: 0; /* Asegura que no tenga padding extra a los lados */
+  box-sizing: border-box;
+}
+
+/* ESTILO BASE DE LAS CAJAS */
+.cajarrr {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  border: 2px solid #333333;
+  overflow: hidden;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* 1. CAJA GRANDE VERTICAL (IZQUIERDA) - CORREGIDA */
+.caja-granderrr {
+  flex: 1;
+  width: 50%;
+  height: 100%;
   position: relative;
   display: flex;
   align-items: center;
-}
-
-.tunel-nebula {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.pista-quantum {
-  display: flex;
-}
-
-.capsula-slide {
-  flex: 0 0 calc(50% - 10px);
-  margin-right: 20px;
-  box-sizing: border-box;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  height: 220px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
+  border-left: 6px solid #ffcc00;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
 }
 
-.capsula-slide img {
+.img-caja-granderrr {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 10px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.caja-granderrr:hover .img-caja-granderrr {
+  transform: scale(1.03);
+  filter: brightness(1.08);
+}
+
+/* COLUMNA DERECHA */
+.columna-derecharrr {
+  flex: 1;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+/* 2. CAJA SUPERIOR DERECHA */
+.caja-superiorrrr {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #242424;
+  border-top: 4px solid #ffcc00;
+  text-align: center;
+}
+
+/* 3. CAJA INFERIOR DERECHA (SLIDER INFINITO) */
+.caja-sliderrrr {
+  flex: 1;
+  background-color: #111111;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border: 1px solid #ffcc0033;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(255, 204, 0, 0.05);
+  width: 100%;
+}
+
+.slider-containerrrr {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
+}
+
+.slider-trackrrr {
+  display: flex;
+  width: calc(180px * 10);
+  animation: scrollInfinito 15s linear infinite;
+}
+
+.sliderrr {
+  width: 180px;
+  flex-shrink: 0;
+  padding: 0 10px;
   box-sizing: border-box;
 }
 
-.flecha-cyber {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border: none;
-  font-size: 18px;
-  padding: 10px 14px;
+.sliderrr a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+
+.sliderrr img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #444444;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
-  border-radius: 50%;
-  z-index: 10;
-  transition: background 0.3s;
 }
 
-.flecha-cyber:hover {
-  background: rgba(0, 0, 0, 0.9);
+.sliderrr img:hover {
+  transform: scale(1.06);
+  border-color: #ffcc00;
+  box-shadow: 0 8px 16px rgba(255, 204, 0, 0.35);
 }
 
-.flecha-cyber.ant { left: -15px; }
-.flecha-cyber.sig { right: -15px; }
+.slider-containerrrr:hover .slider-trackrrr {
+  animation-play-state: paused;
+}
+
+@keyframes scrollInfinito {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* RESPONSIVE CELULARES */
+@media (max-width: 768px) {
+  .contenedor-principalrrr {
+    flex-direction: column;
+    height: auto;
+    padding: 0 10px;
+  }
+
+  .caja-granderrr, 
+  .columna-derecharrr {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .caja-granderrr {
+    height: 350px;
+  }
+
+  .sliderrr {
+    width: 140px;
+  }
+
+  .slider-trackrrr {
+    width: calc(140px * 10);
+  }
+
+  .sliderrr img {
+    height: 90px;
+  }
+}
 
 /* ================= FOOTER ================= */
 .footer-container {
