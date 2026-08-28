@@ -1,11 +1,11 @@
 :root {
   --bg-dark: #0f172a;
   --card-bg: rgba(30, 41, 59, 0.5); 
-  --accent-gold: #006647;
-  --accent-hover: #09a0b4;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --input-bg: #220f2a;
+  --accent-gold: #000000;
+  --accent-hover: #8e9707;
+  --text-main: #ffffff;
+  --text-muted: #000;
+  --input-bg: rgba(112, 105, 7, 0.089);
   --border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -20,7 +20,7 @@ body {
   align-items: center;
   min-height: 100vh;
 
-  background-image: url('iniica.png'); 
+  background-image: url('nose.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -61,7 +61,7 @@ body {
 }
 
 .input-group input {
-  background-color: var(--input-bg);
+  background-color: rgba(112, 105, 7, 0.267);
   border: 1px solid var(--border-color);
   color: var(--text-main);
   padding: 0.75rem 1rem;
@@ -105,7 +105,7 @@ body {
 }
 
 .welcome-banner {
-  background: rgba(217, 119, 6, 0.1);
+  background: rgba(112, 105, 7, 0.267);
   border: 1px solid var(--accent-gold);
   padding: 1rem;
   border-radius: 8px;
