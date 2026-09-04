@@ -29,10 +29,13 @@
           </ul>
         </div>
 
-        <div class="search-box">
-          <input type="text" placeholder="¿Qué herramientas estás buscando?">
-          <button class="search-btn">🔍</button>
-        </div>
+<div class="search-box">
+  <input type="text" id="miBuscador" placeholder="¿Qué herramientas estás buscando?" oninput="filtrarHerramientas()">
+  <button class="search-btn">🔍</button>
+  
+  <!-- La lista debe ir DENTRO de search-box para que la posición absoluta funcione -->
+  <ul id="listaResultados" class="lista-desplegable"></ul>
+</div>
 
         <nav class="header-links">
           <a href="#" class="nav-item">Encuentra tu tienda</a>

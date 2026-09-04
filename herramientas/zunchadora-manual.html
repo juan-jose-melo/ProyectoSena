@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GINE - Tiendas Disponibles y Contacto</title>
-  <link rel="stylesheet" href="menu/estilos.css">
+  <title>GINE - Zunchadora Manual</title>
   <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="estilosherramientas.css">
 </head>
 <body>
 <h1>ㅤ</h1>
-  <!-- Encabezado -->
+  <!-- Encabezado idéntico -->
   <header class="header">
     <div class="header-main">
       <div class="header-container">
-        <div><img src="menu/logo.png" class="logo" alt="Logo"></div>
+        <div><img src="../menu/logo.png" class="logo" alt="Logo"></div>
 
         <div class="menu-wrapper">
           <button class="menu-btn"><span class="hamburger">☰</span> Menú ▾</button>
           <ul class="dropdown-menu">
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="../index.html">Inicio</a></li>
             <li><a href="#">Categorías</a></li>
             <li><a href="#">Ofertas</a></li>
             <li><a href="#">Contacto</a></li>
@@ -32,7 +32,7 @@
 
         <nav class="header-links">
           <a href="#" class="nav-item">Encuentra tu tienda</a>
-          <a href="iniciarseccion.html" class="nav-item user-icon">Inicia sesión ▾</a>
+          <a href="../iniciarseccion.html" class="nav-item user-icon">Inicia sesión ▾</a>
           <a href="#" class="nav-item cart-icon">Compras</a>
         </nav>
       </div>
@@ -44,42 +44,31 @@
 
   <!-- Contenido principal -->
   <main class="tiendas-container">
-
-    <!-- DESCRIPCIÓN CON IMAGEN AJUSTADA Y CONTROLADA -->
+    
+    <!-- NUEVO ESPACIO PARA DESCRIPCIÓN -->
     <section class="card-panel fade-in-section descripcion-panel">
-      <h2 class="titulo-seccion">Descripción de este producto</h2>
-      
-      <div class="producto-contenido">
-        <!-- Contenedor de la Imagen con overflow controlado -->
-        <div class="producto-imagen">
-          <img src="slider2.png" alt="Herramientas Pepo Black Friday 50% OFF">
-        </div>
+      <h2 class="titulo-seccion">Zunchadora Manual</h2>
+      <p class="texto-descripcion">
+        Herramienta diseñada para realizar trabajos de alta precisión y calidad en proyectos de construcción, mantenimiento y remodelación.<br>
 
-        <!-- Texto explicativo -->
-        <div class="producto-texto">
-          <p class="texto-descripcion">
-            Kit de herramientas práctico y versátil para realizar reparaciones, mantenimiento y trabajos manuales en casa, taller o vehículo.
-          </p>
+        <p class="texto"><strong>¿Por qué comprarla?<br></strong>
 
-          <p class="texto"><strong>¿Por qué comprarla?</strong><br>
-            Te permite tener las herramientas más necesarias en un solo lugar, evitando compras por separado. Es una opción práctica para ahorrar tiempo y estar preparado ante cualquier reparación.
-          </p>
+        Facilita las instalaciones y proyectos, permitiendo obtener resultados rápidos, uniformes y profesionales sin depender de improvisaciones.<br>
 
-          <p class="texto"><strong>¿Cómo se usa?</strong><br>
-            1. Identifica lo que necesitas reparar.<br>
-            2. Escoge la herramienta adecuada.<br>
-            3. Úsala correctamente y con cuidado.<br>
-            4. Límpiala y guárdala en la caja.<br>
-            Su variedad de herramientas la convierte en una opción completa y conveniente para diferentes tareas.
-          </p>
-        </div>
-      </div>
+        <strong>¿Cómo se usa?</strong><br>
+        Mide y marca la zona de trabajo.<br>
+        Posiciona correctamente la herramienta.<br>
+        Ejecuta la acción con firmeza y control.<br>
+        Limpia y almacena la herramienta de forma segura.<br>
+        Permite conseguir acabados precisos de forma práctica.
+        </p>
+      </p>
     </section>
 
     <!-- Panel Izquierdo: Mapa y Ferreterías -->
     <section class="card-panel fade-in-section" style="animation-delay: 0.1s;">
       <h2 class="titulo-seccion"> Ferreterías Aliadas Disponibles</h2>
-
+      
       <!-- Mapa de Google Embed -->
       <div class="map-container">
         <iframe 
@@ -93,17 +82,17 @@
       <div class="ferreterias-list">
         <div class="ferreteria-item">
           <h3> Ferretería El Martillo Central </h3>
-          <p> Tel: +57 300 123 4567 | 🕒 Lun-Sáb: 8:00 AM - 6:00 PM</p>
+          <p> Tel: +57 300 123 4567 | Lun-Sáb: 8:00 AM - 6:00 PM</p>
           <p> Av. Principal #45-12</p>
         </div>
         <div class="ferreteria-item">
           <h4>Suministros e Industriales GINE</h4>
-          <p> Tel: +57 311 987 6543 | 🕒 Lun-Sáb: 7:30 AM - 7:00 PM</p>
+          <p> Tel: +57 311 987 6543 | Lun-Sáb: 7:30 AM - 7:00 PM</p>
           <p> Calle de las Herramientas #10-88</p>
         </div>
         <div class="ferreteria-item">
           <h4>MegaFerretería Del Sur</h4>
-          <p> Tel: +57 320 555 0192 | 🕒 Lun-Dom: 8:00 AM - 5:00 PM</p>
+          <p> Tel: +57 320 555 0192 | Lun-Dom: 8:00 AM - 5:00 PM</p>
           <p> Carrera 15 #33-01</p>
         </div>
       </div>
@@ -113,7 +102,7 @@
     <section class="card-panel fade-in-section" style="animation-delay: 0.2s;">
       <h2 class="titulo-seccion"> Contáctanos</h2>
       <p style="margin-bottom: 15px; color: #555;">¿Tienes dudas sobre disponibilidad o envíos? Escríbenos directamente.</p>
-
+      
       <form class="form-contacto" onsubmit="event.preventDefault(); alert('¡Mensaje enviado!');">
         <div class="form-group">
           <input type="text" placeholder="Tu Nombre Completo" required>
@@ -133,9 +122,9 @@
 
   </main>
 
-  <script src="menu/script.js"></script>
+  <script src="../menu/script.js"></script>
 
-  <!-- Pie de página -->
+  <!-- Pie de página idéntico -->
   <footer class="footer-container">
     <div class="footer-content">
       <div class="footer-brand">
@@ -169,7 +158,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 GINE Inc. Todos los derechos reservados.</p>
+      <p>&copy; 2026 GINE Inc. Todos los derechos reservados.</p>
       <div class="social-links">
         <a href="#">LinkedIn</a>
         <a href="#">Twitter</a>
