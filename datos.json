@@ -3,7 +3,7 @@
     { "id": 1, "nombre": "Taladro" },
     { "id": 2, "nombre": "Cortadora de césped" },
     { "id": 3, "nombre": "Andamio" },
-    { "id": 4, "nombre": "Hidrolavadora ELITE 1500W" }
+    { "id": 4, "nombre": "Hidrolavadora" }
   ],
   "ferreterias": [
     { "id": 101, "nombre": "Ferretería El Martillo", "ubicacion": "Suba", "direccion": "Calle 145 #91-10" },
