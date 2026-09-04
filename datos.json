@@ -2,7 +2,7 @@
   "herramientas": [
     { "id": 1, "nombre": "Taladro" },
     { "id": 2, "nombre": "Cortadora de césped" },
-    { "id": 3, "nombre": "Andamio" }
+    { "id": 3, "nombre": "Andamio" },
     { "id": 4, "nombre": "Hidrolavadora ELITE 1500W" }
   ],
   "ferreterias": [
