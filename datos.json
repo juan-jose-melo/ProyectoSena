@@ -5,11 +5,638 @@
     { "id": 3, "nombre": "Andamio" },
     { "id": 4, "nombre": "Hidrolavadora Portatil" },
     { "id": 5, "nombre": "Hidrolavadora ELITE 1500W" },
-    { "id": 6, "nombre": "Hidrolavadora Industrial" }
+    { "id": 6, "nombre": "Hidrolavadora Industrial" },
+    {
+      "id": 6,
+      "nombre": "Alicate"
+    },
+  {
+    "id": 7,
+    "nombre": "Azada"
+  },
+  {
+    "id": 8,
+    "nombre": "Arco de sierra"
+  },
+  {
+    "id": 9,
+    "nombre": "Aplanadora manual"
+  },
+  {
+    "id": 10,
+    "nombre": "Azadon"
+  },
+  {
+    "id": 11,
+    "nombre": "Alezna"
+  },
+  {
+    "id": 12,
+    "nombre": "Berbiqui"
+  },
+  {
+    "id": 13,
+    "nombre": "Bomba de aire"
+  },
+  {
+    "id": 14,
+    "nombre": "Broca"
+  },
+  {
+    "id": 15,
+    "nombre": "Biseladora"
+  },
+  {
+    "id": 16,
+    "nombre": "Buril"
+  },
+  {
+    "id": 17,
+    "nombre": "Botador"
+  },
+  {
+    "id": 18,
+    "nombre": "Cinta metrica"
+  },
+  {
+    "id": 19,
+    "nombre": "Cincel"
+  },
+  {
+    "id": 20,
+    "nombre": "Compresor de aire"
+  },
+  {
+    "id": 21,
+    "nombre": "Cortafrios"
+  },
+  {
+    "id": 22,
+    "nombre": "Cuter"
+  },
+  {
+    "id": 23,
+    "nombre": "Clavadora"
+  },
+  {
+    "id": 24,
+    "nombre": "Destornillador"
+  },
+  {
+    "id": 25,
+    "nombre": "Dado de impacto"
+  },
+  {
+    "id": 26,
+    "nombre": "Decapador termico"
+  },
+  {
+    "id": 27,
+    "nombre": "Detector de cables"
+  },
+  {
+    "id": 28,
+    "nombre": "Discos de corte"
+  },
+  {
+    "id": 29,
+    "nombre": "Dobladora de tubos"
+  },
+  {
+    "id": 30,
+    "nombre": "Esmeriladora"
+  },
+  {
+    "id": 31,
+    "nombre": "Escuadra de carpintero"
+  },
+  {
+    "id": 32,
+    "nombre": "Escofina"
+  },
+  {
+    "id": 33,
+    "nombre": "Espatula"
+  },
+  {
+    "id": 34,
+    "nombre": "Engrapadora manual"
+  },
+  {
+    "id": 35,
+    "nombre": "Extractor de tornillos"
+  },
+  {
+    "id": 36,
+    "nombre": "Formon"
+  },
+  {
+    "id": 37,
+    "nombre": "Fresadora"
+  },
+  {
+    "id": 38,
+    "nombre": "Flexometro"
+  },
+  {
+    "id": 39,
+    "nombre": "Filtradora de aceite"
+  },
+  {
+    "id": 40,
+    "nombre": "Fresa para taladro"
+  },
+  {
+    "id": 41,
+    "nombre": "Fratas"
+  },
+  {
+    "id": 42,
+    "nombre": "Gato hidraulico"
+  },
+  {
+    "id": 43,
+    "nombre": "Grapa industrial"
+  },
+  {
+    "id": 44,
+    "nombre": "Guantes de trabajo"
+  },
+  {
+    "id": 45,
+    "nombre": "Gubia"
+  },
+  {
+    "id": 46,
+    "nombre": "Gramil"
+  },
+  {
+    "id": 47,
+    "nombre": "Generador electrico"
+  },
+  {
+    "id": 48,
+    "nombre": "Hacha"
+  },
+  {
+    "id": 49,
+    "nombre": "Hoe"
+  },
+  {
+    "id": 50,
+    "nombre": "Herramienta rotativa"
+  },
+  {
+    "id": 51,
+    "nombre": "Hormigonera"
+  },
+  {
+    "id": 52,
+    "nombre": "Hoja de sierra"
+  },
+  {
+    "id": 53,
+    "nombre": "Hijuela"
+  },
+  {
+    "id": 54,
+    "nombre": "Inversor de soldadura"
+  },
+  {
+    "id": 55,
+    "nombre": "Inyector de grasa"
+  },
+  {
+    "id": 56,
+    "nombre": "Iman telescopico"
+  },
+  {
+    "id": 57,
+    "nombre": "Inclinometro"
+  },
+  {
+    "id": 58,
+    "nombre": "Indicador de caratula"
+  },
+  {
+    "id": 59,
+    "nombre": "Izadora de cable"
+  },
+  {
+    "id": 60,
+    "nombre": "Juego de llaves"
+  },
+  {
+    "id": 61,
+    "nombre": "Juego de tubos"
+  },
+  {
+    "id": 62,
+    "nombre": "Jeringa de succion"
+  },
+  {
+    "id": 63,
+    "nombre": "Junta universal"
+  },
+  {
+    "id": 64,
+    "nombre": "Juego de brocas"
+  },
+  {
+    "id": 65,
+    "nombre": "Junta torica extractor"
+  },
+  {
+    "id": 66,
+    "nombre": "Kit de herramientas"
+  },
+  {
+    "id": 67,
+    "nombre": "Kit de roscado"
+  },
+  {
+    "id": 68,
+    "nombre": "Kit de autocentrante"
+  },
+  {
+    "id": 69,
+    "nombre": "Knipex alicate"
+  },
+  {
+    "id": 70,
+    "nombre": "Kit de soldado"
+  },
+  {
+    "id": 71,
+    "nombre": "Kit de carrocero"
+  },
+  {
+    "id": 72,
+    "nombre": "Llave inglesa"
+  },
+  {
+    "id": 73,
+    "nombre": "Llave Allen"
+  },
+  {
+    "id": 74,
+    "nombre": "Lijadora"
+  },
+  {
+    "id": 75,
+    "nombre": "Lima"
+  },
+  {
+    "id": 76,
+    "nombre": "Llave fija"
+  },
+  {
+    "id": 77,
+    "nombre": "Llave de trinquete"
+  },
+  {
+    "id": 78,
+    "nombre": "Martillo"
+  },
+  {
+    "id": 79,
+    "nombre": "Maza"
+  },
+  {
+    "id": 80,
+    "nombre": "Multimetro"
+  },
+  {
+    "id": 81,
+    "nombre": "Mini esmeriladora"
+  },
+  {
+    "id": 82,
+    "nombre": "Mortero"
+  },
+  {
+    "id": 83,
+    "nombre": "Manguera de presion"
+  },
+  {
+    "id": 84,
+    "nombre": "Nivel de burbuja"
+  },
+  {
+    "id": 85,
+    "nombre": "Nivel laser"
+  },
+  {
+    "id": 86,
+    "nombre": "Nibbler electrico"
+  },
+  {
+    "id": 87,
+    "nombre": "Nivel torpedo"
+  },
+  {
+    "id": 88,
+    "nombre": "Nivel de manguera"
+  },
+  {
+    "id": 89,
+    "nombre": "Nivel de mano"
+  },
+  {
+    "id": 90,
+    "nombre": "Ojaladora"
+  },
+  {
+    "id": 91,
+    "nombre": "Olla de presion para pintura"
+  },
+  {
+    "id": 92,
+    "nombre": "Organizador de herramientas"
+  },
+  {
+    "id": 93,
+    "nombre": "Opresor de resortes"
+  },
+  {
+    "id": 94,
+    "nombre": "Ojalillos metalicos"
+  },
+  {
+    "id": 95,
+    "nombre": "Opacimetro"
+  },
+  {
+    "id": 96,
+    "nombre": "Alicate de presion"
+  },
+  {
+    "id": 97,
+    "nombre": "Pico"
+  },
+  {
+    "id": 98,
+    "nombre": "Pala"
+  },
+  {
+    "id": 99,
+    "nombre": "Pistola de calor"
+  },
+  {
+    "id": 100,
+    "nombre": "Prensa C"
+  },
+  {
+    "id": 101,
+    "nombre": "Pincel"
+  },
+  {
+    "id": 102,
+    "nombre": "Quemador de gas"
+  },
+  {
+    "id": 103,
+    "nombre": "Quitapinturas termico"
+  },
+  {
+    "id": 104,
+    "nombre": "Quitaesmalte industrial"
+  },
+  {
+    "id": 105,
+    "nombre": "Quitarebabas"
+  },
+  {
+    "id": 106,
+    "nombre": "Quitagrapas pesado"
+  },
+  {
+    "id": 107,
+    "nombre": "Quitamanchas mecanico"
+  },
+  {
+    "id": 108,
+    "nombre": "Remachadora"
+  },
+  {
+    "id": 109,
+    "nombre": "Rotomartillo"
+  },
+  {
+    "id": 110,
+    "nombre": "Rodillo de pintura"
+  },
+  {
+    "id": 111,
+    "nombre": "Roscadora"
+  },
+  {
+    "id": 112,
+    "nombre": "Rastrillo"
+  },
+  {
+    "id": 113,
+    "nombre": "Ropa de seguridad"
+  },
+  {
+    "id": 114,
+    "nombre": "Sierra circular"
+  },
+  {
+    "id": 115,
+    "nombre": "Sierra de calar"
+  },
+  {
+    "id": 116,
+    "nombre": "Soldador de estano"
+  },
+  {
+    "id": 117,
+    "nombre": "Sargento"
+  },
+  {
+    "id": 118,
+    "nombre": "Soplador de aire"
+  },
+  {
+    "id": 119,
+    "nombre": "Sarten de soldadura"
+  },
+  {
+    "id": 120,
+    "nombre": "Taladro 300W"
+  },
+  {
+    "id": 121,
+    "nombre": "Tijera de hojalatero"
+  },
+  {
+    "id": 122,
+    "nombre": "Torno"
+  },
+  {
+    "id": 123,
+    "nombre": "Tornillo de banco"
+  },
+  {
+    "id": 124,
+    "nombre": "Tarraja"
+  },
+  {
+    "id": 125,
+    "nombre": "Tenaza"
+  },
+  {
+    "id": 126,
+    "nombre": "Uneta de palanca"
+  },
+  {
+    "id": 127,
+    "nombre": "Utilaje de corte"
+  },
+  {
+    "id": 128,
+    "nombre": "Ultrasonido limpiador"
+  },
+  {
+    "id": 129,
+    "nombre": "Union rapida neumatica"
+  },
+  {
+    "id": 130,
+    "nombre": "Unero de mecano"
+  },
+  {
+    "id": 131,
+    "nombre": "Unidad de mantenimiento FRL"
+  },
+  {
+    "id": 132,
+    "nombre": "Vernier"
+  },
+  {
+    "id": 133,
+    "nombre": "Ventosa para cristal"
+  },
+  {
+    "id": 134,
+    "nombre": "Valvula de presion"
+  },
+  {
+    "id": 135,
+    "nombre": "Volvedor de machos"
+  },
+  {
+    "id": 136,
+    "nombre": "Vibrador de concreto"
+  },
+  {
+    "id": 137,
+    "nombre": "Varilla de soldar"
+  },
+  {
+    "id": 138,
+    "nombre": "Winche manual"
+  },
+  {
+    "id": 139,
+    "nombre": "Wiggle prensa"
+  },
+  {
+    "id": 140,
+    "nombre": "Wire stripper"
+  },
+  {
+    "id": 141,
+    "nombre": "Wrench de cadena"
+  },
+  {
+    "id": 142,
+    "nombre": "Wincha metalica"
+  },
+  {
+    "id": 143,
+    "nombre": "Waterpas"
+  },
+  {
+    "id": 144,
+    "nombre": "Xilografo cortador"
+  },
+  {
+    "id": 145,
+    "nombre": "Extractor X"
+  },
+  {
+    "id": 146,
+    "nombre": "Xilofono comprobador"
+  },
+  {
+    "id": 147,
+    "nombre": "Xeno probador de fugas"
+  },
+  {
+    "id": 148,
+    "nombre": "X-acto bisturi"
+  },
+  {
+    "id": 149,
+    "nombre": "Xenon lampara de tiempo"
+  },
+  {
+    "id": 150,
+    "nombre": "Yunque"
+  },
+  {
+    "id": 151,
+    "nombre": "Yugo para resortes"
+  },
+  {
+    "id": 152,
+    "nombre": "Yugular para casco"
+  },
+  {
+    "id": 153,
+    "nombre": "Yarda de medir"
+  },
+  {
+    "id": 154,
+    "nombre": "Yunque de mano"
+  },
+  {
+    "id": 155,
+    "nombre": "Yunta tensor"
+  },
+  {
+    "id": 156,
+    "nombre": "Zanjadora"
+  },
+  {
+    "id": 157,
+    "nombre": "Zapata de prensado"
+  },
+  {
+    "id": 158,
+    "nombre": "Zuncho de fleje"
+  },
+  {
+    "id": 159,
+    "nombre": "Zunchadora manual"
+  },
+  {
+    "id": 160,
+    "nombre": "Zapatilla de lijado"
+  },
+  {
+    "id": 161,
+    "nombre": "Zocalo para dados"
+  }
   ],
   "ferreterias": [
-    { "id": 101, "nombre": "Ferretería El Martillo", "ubicacion": "Suba", "direccion": "Calle 145 #91-10" },
-    { "id": 102, "nombre": "Ferretería Central", "ubicacion": "Centro", "direccion": "Carrera 7 #12-40" },
-    { "id": 102, "nombre": "Ferretería Central", "ubicacion": "Kennedy", "direccion": "Carrera 7 #12-40" }
+    { "id": 1000, "nombre": "Ferretería El Martillo", "ubicacion": "Suba, Kennedy, Bosa", "direccion": "Av. Principal #45-12" },
+    { "id": 1001, "nombre": "FerreMax", "ubicacion": "Centro, Suba, Ciudad Bolivar, Usaquen", "direccion": "Carrera 7 #12-40" },
+    { "id": 1002, "nombre": "Todo Herramienta", "ubicacion": "Kennedy, Fontibon", "direccion": "Calle de las Herramientas #10-88" },
+    { "id": 1002, "nombre": "Ferro Power", "ubicacion": "Kennedy, Centro, Chapinero", "direccion": "Carrera 15 #33-01" },
+    { "id": 1002, "nombre": "Terrys malvados y asociados", "ubicacion": "Kennedy, Centro, Santa Fe, San Cristobal, Barrios Unidos", "direccion": "Carrera 29 #38-01" },
+    { "id": 1002, "nombre": "Tutan Camoon", "ubicacion": "Kennedy, Centro, Sumapaz, Teusaquillo, Engativa, Usme, Tunjuelito, Puente Aranda", "direccion": "Carrera 18 #36-01" }
   ]
 }
