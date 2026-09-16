@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GINE - Uneta De Palanca</title>
+  <title>GINE - Taladro</title>
   <link rel="stylesheet" href="estilos.css">
   <link rel="stylesheet" href="estilosherramientas.css">
 </head>
 <body>
-<h1>ㅤ</h1>
-  <!-- Encabezado idéntico -->
+  <h1>ㅤ</h1>
+
+  <!-- Encabezado -->
   <header class="header">
     <div class="header-main">
       <div class="header-container">
@@ -26,8 +27,14 @@
         </div>
 
         <div class="search-box">
-          <input type="text" placeholder="¿Qué herramientas estás buscando?">
+          <input 
+            type="text" 
+            id="miBuscador" 
+            placeholder="¿Qué herramientas estás buscando?" 
+            oninput="filtrarHerramientas()"
+          >
           <button class="search-btn">🔍</button>
+          <ul id="listaResultados" class="lista-desplegable"></ul>
         </div>
 
         <nav class="header-links">
@@ -45,31 +52,38 @@
   <!-- Contenido principal -->
   <main class="tiendas-container">
     
-    <!-- NUEVO ESPACIO PARA DESCRIPCIÓN -->
+    <!-- DESCRIPCIÓN DEL PRODUCTO -->
     <section class="card-panel fade-in-section descripcion-panel">
-      <h2 class="titulo-seccion">Uneta De Palanca</h2>
-      <p class="texto-descripcion">
-        Herramienta diseñada para realizar trabajos de alta precisión y calidad en proyectos de construcción, mantenimiento y remodelación.<br>
+      <div class="herramienta-destacada">
+        <div class="contenedor-imagen-herramienta">
+          <img src="taladro.webp" alt="Taladro Profesional" class="imagen-herramienta">
+        </div>
 
-        <p class="texto"><strong>¿Por qué comprarla?<br></strong>
+        <div class="info-herramienta">
+          <h2 class="titulo-seccion"><center>Taladro Profesional</center></h2>
+          <p class="texto-descripcion">
+            Herramienta diseñada para realizar trabajos de alta precisión y calidad en proyectos de construcción, mantenimiento y remodelación.
+          </p>
+          
+          <div class="detalles-herramienta">
+            <p class="texto"><strong>¿Por qué comprarla?</strong><br>
+            Facilita las instalaciones y proyectos, permitiendo obtener resultados rápidos, uniformes y profesionales sin depender de improvisaciones.</p>
 
-        Facilita las instalaciones y proyectos, permitiendo obtener resultados rápidos, uniformes y profesionales sin depender de improvisaciones.<br>
-
-        <strong>¿Cómo se usa?</strong><br>
-        Mide y marca la zona de trabajo.<br>
-        Posiciona correctamente la herramienta.<br>
-        Ejecuta la acción con firmeza y control.<br>
-        Limpia y almacena la herramienta de forma segura.<br>
-        Permite conseguir acabados precisos de forma práctica.
-        </p>
-      </p>
+            <p class="texto"><strong>¿Cómo se usa?</strong><br>
+            • Mide y marca la zona de trabajo.<br>
+            • Posiciona correctamente la herramienta.<br>
+            • Ejecuta la acción con firmeza y control.<br>
+            • Limpia y almacena la herramienta de forma segura.<br>
+            • Permite conseguir acabados precisos de forma práctica.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Panel Izquierdo: Mapa y Ferreterías -->
     <section class="card-panel fade-in-section" style="animation-delay: 0.1s;">
       <h2 class="titulo-seccion"> Ferreterías Aliadas Disponibles</h2>
       
-      <!-- Mapa de Google Embed -->
       <div class="map-container">
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.786523912198!2d-74.072092!3d4.650833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMzknMDMuMCJOIDc0wrAwNCcxOS41Ilc!5e0!3m2!1ses!2sco!4v1620000000000!5m2!1ses!2sco" 
@@ -78,7 +92,6 @@
         </iframe>
       </div>
 
-      <!-- Lista de tiendas -->
       <div class="ferreterias-list">
         <div class="ferreteria-item">
           <h3> Ferretería El Martillo Central </h3>
@@ -98,7 +111,7 @@
       </div>
     </section>
 
-    <!-- Panel Derecho: Formulario de Contacto -->
+    <!-- Panel Derecho: Formulario de Contacto + Slider Infinito -->
     <section class="card-panel fade-in-section" style="animation-delay: 0.2s;">
       <h2 class="titulo-seccion"> Contáctanos</h2>
       <p style="margin-bottom: 15px; color: #555;">¿Tienes dudas sobre disponibilidad o envíos? Escríbenos directamente.</p>
@@ -118,13 +131,28 @@
         </div>
         <button type="submit" class="btn-enviar">Enviar Mensaje</button>
       </form>
+
+      <!-- SLIDER INFINITO AGREGADO ABAJO DEL BOTÓN DE ENVIAR -->
+      <div class="slider-infinito-container">
+        <div class="slider-infinito-track">
+          <!-- Primer grupo de imágenes -->
+          <div class="slide-infinito"><img src="baner1.jpg" alt="Banner 1"></div>
+          <div class="slide-infinito"><img src="baner2.jpg" alt="Banner 2"></div>
+          <div class="slide-infinito"><img src="baner3.jpg" alt="Banner 3"></div>
+          <!-- Duplicado para lograr el bucle infinito suave -->
+          <div class="slide-infinito"><img src="baner1.jpg" alt="Banner 1"></div>
+          <div class="slide-infinito"><img src="baner2.jpg" alt="Banner 2"></div>
+          <div class="slide-infinito"><img src="baner3.jpg" alt="Banner 3"></div>
+        </div>
+      </div>
+
     </section>
 
   </main>
 
   <script src="../menu/script.js"></script>
 
-  <!-- Pie de página idéntico -->
+  <!-- Pie de página -->
   <footer class="footer-container">
     <div class="footer-content">
       <div class="footer-brand">
@@ -167,8 +195,6 @@
     </div>
   </footer>
 
-  <script src="https://cdn.botpress.cloud/webchat/v3.7/inject.js"></script>
-  <script src="https://files.bpcontent.cloud/2026/08/23/17/20260823171107-LYYGQ6CT.js" defer></script>
-      
+  <script src="pagina.js"></script>
 </body>
 </html>

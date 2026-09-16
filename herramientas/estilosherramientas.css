@@ -134,14 +134,17 @@ hr {
 .dropdown-menu.show {
   display: block;
 }
+/* --- CONTENEDOR DEL BUSCADOR --- */
 
+/* REGLETA CORREGIDA PARA EL BUSCADOR Y LISTA DESPLEGABLE */
 .search-box {
   display: flex;
   flex: 1;
   max-width: 500px;
   background: white;
   border-radius: 4px;
-  overflow: hidden;
+  position: relative; /* Permite posicionamiento absoluto de la lista */
+  overflow: visible;  /* Permite que la lista se muestre fuera del contenedor */
 }
 
 .search-box input {
@@ -150,6 +153,7 @@ hr {
   padding: 10px 15px;
   outline: none;
   font-size: 0.9rem;
+  border-radius: 4px 0 0 4px;
 }
 
 .search-btn {
@@ -159,6 +163,38 @@ hr {
   padding: 0 15px;
   cursor: pointer;
   font-size: 1rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.lista-desplegable {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.item-resultado {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.item-resultado:hover {
+  background-color: #f5f5f5;
 }
 
 .header-links {
@@ -225,7 +261,7 @@ hr {
   cursor: pointer;
   outline: none;
   background: transparent;
-  background-color: #007bff;
+  background-color: #ffe600;
 }
 
 .slide img {
@@ -885,4 +921,153 @@ hr {
 
 .texto strong {
   color: #ffc700 !important;
+}
+
+/* ==========================================================================
+   ESTILOS PARA LA IMAGEN DE LA HERRAMIENTA Y EFECTO HOVER
+   ========================================================================== */
+/* ==========================================================================
+   ESTILOS: IMAGEN A LA IZQUIERDA E INFORMACIÓN DE TEXTO CENTRADA
+   ========================================================================== */
+
+.herramienta-destacada {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* Contenedor de la imagen alineado a la izquierda */
+.contenedor-imagen-herramienta {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(20, 20, 20, 0.6);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 199, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: relative;
+}
+
+.imagen-herramienta {
+  max-width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: contain;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.6));
+}
+
+/* EFECTO HOVER EN LA IMAGEN */
+.contenedor-imagen-herramienta:hover .imagen-herramienta {
+  transform: scale(1.08) translateY(-5px);
+  filter: drop-shadow(0px 15px 20px rgba(255, 199, 0, 0.5));
+}
+
+/* Solo la columna de información de la derecha tiene el texto centrado */
+.info-herramienta {
+  flex: 2 1 400px;
+  text-align: center;
+}
+
+.info-herramienta .titulo-seccion {
+  text-align: center;
+}
+
+.detalles-herramienta .texto {
+  text-align: center;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .herramienta-destacada {
+    flex-direction: column;
+  }
+  
+  .contenedor-imagen-herramienta {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+/*slider infinito*/
+
+/* ==========================================================================
+   NUEVO SLIDER INFINITO (DEBAJO DEL BOTÓN ENVIAR)
+   ========================================================================== */
+/* ==========================================================================
+   SLIDER INFINITO CORREGIDO (ALINEADO Y COMPLETO)
+   ========================================================================== */
+/* ==========================================================================
+   SLIDER INFINITO (CON SEPARACIÓN Y ALTURA AJUSTABLE)
+   ========================================================================== */
+
+.slider-infinito-container {
+  margin-top: 15px;
+  width: 100%;
+  
+  /* -------------------------------------------------------------------
+     AJUSTE MANUAL DE ALTURA:
+     Cambia '200px' por el valor que quieras (ejemplo: 180px, 220px, etc.)
+     ------------------------------------------------------------------- */
+  height: 254px; 
+
+  overflow: hidden;
+  border-radius: 8px;
+  border: 2px solid #ffc700;
+  background: #282828;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.slider-infinito-track {
+  display: flex;
+  width: calc(100% * 6);
+  height: 100%;
+  
+  /* -------------------------------------------------------------------
+     ESPACIO ENTRE BANNERS:
+     'gap: 10px' crea la separación entre cada imagen. 
+     Si quieres más espacio pon 15px, si quieres menos pon 5px.
+     ------------------------------------------------------------------- */
+  gap: 10px; 
+
+  animation: carruselInfinito 15s linear infinite;
+}
+
+
+
+.slide-infinito {
+  /* Restamos el espacio del gap para que el cálculo del ancho sea exacto */
+  width: calc((100% / 6) - 10px); 
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.slide-infinito img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0px; /* Borde suave en las esquinas de cada imagen */
+  display: block;
+}
+
+/* Animación ajustada contemplando el espacio (gap) */
+@keyframes carruselInfinito {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Desplaza exactamente la mitad del contenedor para hacer el bucle perfecto */
+    transform: translateX(calc(-50% - 5px)); 
+  }
 }
