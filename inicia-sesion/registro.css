@@ -2,7 +2,7 @@
   --bg-dark: #0f172a;
   --card-bg: rgba(30, 41, 59, 0.5); 
   --accent-gold: #000000;
-  --accent-hover: #8e9707;
+  --accent-hover: #0e0e0e;
   --text-main: #ffffff;
   --text-muted: #000;
   --input-bg: rgba(112, 105, 7, 0.089);
@@ -34,7 +34,7 @@ body {
   padding: 2.5rem;
   width: 100%;
   max-width: 420px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 25px -5px rgba(255, 238, 1, 0.5);
 }
 
 .card-header h2 {
@@ -61,7 +61,7 @@ body {
 }
 
 .input-group input {
-  background-color: rgba(112, 105, 7, 0.267);
+  background-color: rgba(22, 22, 18, 0.267);
   border: 1px solid var(--border-color);
   color: var(--text-main);
   padding: 0.75rem 1rem;
@@ -102,10 +102,11 @@ body {
   border-radius: 8px;
   cursor: pointer;
   margin-top: 0.8rem;
+  color:white;
 }
 
 .welcome-banner {
-  background: rgba(112, 105, 7, 0.267);
+  background: rgba(7, 7, 3, 0.459);
   border: 1px solid var(--accent-gold);
   padding: 1rem;
   border-radius: 8px;
