@@ -276,7 +276,7 @@ const herramientas = [
 
   // B
   { nombre: "Berbiqui", url: "herramientas/berbiqui.html" },
-  { nombre: "Bomba de aire", url: "herramientas/bomba-de-aire.html" },
+  { nombre: "Bomba de aire manual", url: "herramientas/bomba-de-aire-manual.html" },
   { nombre: "Broca", url: "herramientas/broca.html" },
   { nombre: "Biseladora", url: "herramientas/biseladora.html" },
   { nombre: "Buril", url: "herramientas/buril.html" },
@@ -351,19 +351,19 @@ const herramientas = [
   { nombre: "Kit de roscado", url: "herramientas/kit-de-roscado.html" },
   { nombre: "Kit de autocentrante", url: "herramientas/kit-de-autocentrante.html" },
   { nombre: "Knipex alicate", url: "herramientas/knipex-alicate.html" },
-  { nombre: "Kit de soldado", url: "herramientas/kit-de-soldado.html" },
+  { nombre: "Kit de soldadadura electrica", url: "kit-de-soldadura-electrica.html" },
   { nombre: "Kit de carrocero", url: "herramientas/kit-de-carrocero.html" },
 
   // L
   { nombre: "Llave inglesa", url: "herramientas/llave-inglesa.html" },
   { nombre: "Llave Allen", url: "herramientas/llave-allen.html" },
   { nombre: "Lijadora", url: "herramientas/lijadora.html" },
-  { nombre: "Lima", url: "herramientas/lima.html" },
+  { nombre: "Lima mecanica", url: "herramientas/lima-mecanica.html" },
   { nombre: "Llave fija", url: "herramientas/llave-fija.html" },
   { nombre: "Llave de trinquete", url: "herramientas/llave-de-trinquete.html" },
 
   // M
-  { nombre: "Martillo", url: "herramientas/martillo.html" },
+  { nombre: "Martillo de peña", url: "herramientas/martillo-de-peña.html" },
   { nombre: "Maza", url: "herramientas/maza.html" },
   { nombre: "Multimetro", url: "herramientas/multimetro.html" },
   { nombre: "Mini esmeriladora", url: "herramientas/mini-esmeriladora.html" },
@@ -472,7 +472,24 @@ const herramientas = [
   { nombre: "Zuncho de fleje", url: "herramientas/zuncho-de-fleje.html" },
   { nombre: "Zunchadora manual", url: "herramientas/zunchadora-manual.html" },
   { nombre: "Zapatilla de lijado", url: "herramientas/zapatilla-de-lijado.html" },
-  { nombre: "Zocalo para dados", url: "herramientas/zocalo-para-dados.html" }
+  { nombre: "Zocalo para dados", url: "herramientas/zocalo-para-dados.html" },
+
+
+
+
+
+
+
+
+
+  //ultimas paginas agregadas
+
+  { nombre: "Caja herraminetas pro", url: "herramientas/cajaherramientas-pro.html" },
+  { nombre: "Compresor de aire 24L", url: "herramientas/compresor-de-aire24l.html" },
+  { nombre: "Cortadora de ceramica", url: "herramientas/cortadora-de-ceramica.html" },
+  { nombre: "hidrolavadora ELITE", url: "herramientas/hidrolavadora-electrica.html" },
+  { nombre: "Juego de llaves metricas", url: "herramientas/juegollaves-metrica.html" },
+  { nombre: "Lijadora orbital", url: "herramientas/lijadora-orbital.html" }
 ];
 
 function filtrarHerramientas() {

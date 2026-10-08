@@ -1009,14 +1009,14 @@ hr {
 /* ==========================================================================
    SLIDER INFINITO (CON SEPARACIÓN Y ALTURA AJUSTABLE)
    ========================================================================== */
-
 .slider-infinito-container {
   margin-top: 15px;
   width: 100%;
-  
+
   /* -------------------------------------------------------------------
      AJUSTE MANUAL DE ALTURA:
-     Cambia '200px' por el valor que quieras (ejemplo: 180px, 220px, etc.)
+     Si la imagen sigue dejando espacios arriba/abajo o a los lados,
+     puedes probar ajustando este valor (ej: 200px, 220px, etc.).
      ------------------------------------------------------------------- */
   height: 254px; 
 
@@ -1030,24 +1030,20 @@ hr {
 
 .slider-infinito-track {
   display: flex;
-  width: calc(100% * 6);
   height: 100%;
-  
+
   /* -------------------------------------------------------------------
      ESPACIO ENTRE BANNERS:
-     'gap: 10px' crea la separación entre cada imagen. 
-     Si quieres más espacio pon 15px, si quieres menos pon 5px.
+     Separación entre cada imagen.
      ------------------------------------------------------------------- */
   gap: 10px; 
 
   animation: carruselInfinito 15s linear infinite;
 }
 
-
-
 .slide-infinito {
-  /* Restamos el espacio del gap para que el cálculo del ancho sea exacto */
-  width: calc((100% / 6) - 10px); 
+  /* Ocupa el 100% del ancho del contenedor visible para mostrar un banner completo */
+  width: 100%; 
   height: 100%;
   flex-shrink: 0;
 }
@@ -1055,9 +1051,15 @@ hr {
 .slide-infinito img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
+  /* -------------------------------------------------------------------
+     OBJECT-FIT: CONTAIN
+     Con 'contain' la imagen ajusta su tamaño completo sin recortar 
+     ningún borde del banner.
+     ------------------------------------------------------------------- */
+  object-fit: contain; 
   object-position: center;
-  border-radius: 0px; /* Borde suave en las esquinas de cada imagen */
+  border-radius: 0px; 
   display: block;
 }
 
@@ -1067,7 +1069,7 @@ hr {
     transform: translateX(0);
   }
   100% {
-    /* Desplaza exactamente la mitad del contenedor para hacer el bucle perfecto */
+    /* Desplaza exactamente la mitad del carrusel para crear el efecto infinito continuo */
     transform: translateX(calc(-50% - 5px)); 
   }
-}
+} 

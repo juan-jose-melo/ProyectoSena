@@ -7,7 +7,7 @@ const herramientas = [
   { id: 10, nombre: "Azadon", url: "azadon.html" },
   { id: 11, nombre: "Alezna", url: "alezna.html" },
   { id: 12, nombre: "Berbiqui", url: "berbiqui.html" },
-  { id: 13, nombre: "Bomba de aire", url: "bomba-de-aire.html" },
+  { id: 13, nombre: "Bomba de aire manual", url: "bomba-de-aire-manual.html" },
   { id: 14, nombre: "Broca", url: "broca.html" },
   { id: 15, nombre: "Biseladora", url: "biseladora.html" },
   { id: 16, nombre: "Buril", url: "buril.html" },
@@ -64,15 +64,15 @@ const herramientas = [
   { id: 67, nombre: "Kit de roscado", url: "kit-de-roscado.html" },
   { id: 68, nombre: "Kit de autocentrante", url: "kit-de-autocentrante.html" },
   { id: 69, nombre: "Knipex alicate", url: "knipex-alicate.html" },
-  { id: 70, nombre: "Kit de soldado", url: "kit-de-soldado.html" },
+  { id: 70, nombre: "Kit de soldadadura electrica", url: "kit-de-soldadura-electrica.html" },
   { id: 71, nombre: "Kit de carrocero", url: "kit-de-carrocero.html" },
   { id: 72, nombre: "Llave inglesa", url: "llave-inglesa.html" },
   { id: 73, nombre: "Llave Allen", url: "llave-allen.html" },
   { id: 74, nombre: "Lijadora", url: "lijadora.html" },
-  { id: 75, nombre: "Lima", url: "lima.html" },
+  { id: 75, nombre: "Lima mecanica", url: "lima-mecanica.html" },
   { id: 76, nombre: "Llave fija", url: "llave-fija.html" },
   { id: 77, nombre: "Llave de trinquete", url: "llave-de-trinquete.html" },
-  { id: 78, nombre: "Martillo", url: "martillo.html" },
+  { id: 78, nombre: "Martillo de peña", url: "martillo-de-peña.html" },
   { id: 79, nombre: "Maza", url: "maza.html" },
   { id: 80, nombre: "Multimetro", url: "multimetro.html" },
   { id: 81, nombre: "Mini esmeriladora", url: "mini-esmeriladora.html" },
@@ -155,7 +155,20 @@ const herramientas = [
   { id: 158, nombre: "Zuncho de fleje", url: "zuncho-de-fleje.html" },
   { id: 159, nombre: "Zunchadora manual", url: "zunchadora-manual.html" },
   { id: 160, nombre: "Zapatilla de lijado", url: "zapatilla-de-lijado.html" },
-  { id: 161, nombre: "Zocalo para dados", url: "zocalo-para-dados.html" }
+  { id: 161, nombre: "Zocalo para dados", url: "zocalo-para-dados.html" },
+
+
+
+  //* ultimo agregado */
+
+
+
+  {  id: 161, nombre: "Caja herraminetas pro", url: "herramientas/cajaherramientas-pro.html" },
+  {  id: 162, nombre: "Compresor de aire 24L", url: "herramientas/compresor-de-aire24l.html" },
+  {  id: 163, nombre: "Cortadora de ceramica", url: "herramientas/cortadora-de-ceramica.html" },
+  {  id: 164, nombre: "hidrolavadora ELITE", url: "herramientas/hidrolavadora-electrica.html" },
+  {  id: 165, nombre: "Juego de llaves metricas", url: "herramientas/juegollaves-metrica.html" },
+  {  id: 166, nombre: "Lijadora orbital", url: "herramientas/lijadora-orbital.html" }
 ];
 
 // Función para filtrar y mostrar los resultados en tiempo real
