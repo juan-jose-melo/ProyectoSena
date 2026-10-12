@@ -1,12 +1,12 @@
 :root {
-  --bg-dark: #000;
-  --card-bg: rgba(0, 0, 0, 0.5); 
-  --accent-gold: rgba(5, 5, 2, 0.5);
-  --accent-hover: rgba(112, 105, 7, 0.089);
+  --bg-dark: #121212;
+  --card-bg: rgba(20, 20, 20, 0.75); 
+  --accent-yellow: #ffcc00;
+  --accent-hover: #e6b800;
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
-  --input-bg: rgba(2, 2, 2, 0.7);
-  --border-color: rgba(255, 255, 255, 0.2);
+  --input-bg: rgba(10, 10, 10, 0.85);
+  --border-color: rgba(255, 255, 255, 0.15);
 }
 
 body {
@@ -19,6 +19,7 @@ body {
   align-items: center;
   min-height: 100vh;
   
+  /* Asegúrate de cambiar 'fondo-herramientas.png' por el nombre real de tu imagen en HD con los engranajes a la izquierda */
   background-image: url('nose.png');
   background-size: cover;
   background-position: center;
@@ -33,11 +34,11 @@ body {
   padding: 2.5rem;
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px); 
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px); 
 }
 
-.card-header h2 {
+.card-header h1, .card-header h2 {
   margin: 0 0 0.5rem 0;
   font-size: 1.8rem;
   color: var(--text-main);
@@ -69,39 +70,45 @@ body {
   border-radius: 8px;
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .input-group input:focus {
-  border-color: var(--accent-gold);
+  border-color: var(--accent-yellow);
+  box-shadow: 0 0 8px rgba(255, 204, 0, 0.4);
 }
 
+/* Botón principal con estilo de construcción (Franjas amarillas y negras) */
 .btn-primary {
   width: 100%;
-  padding: 0.8rem;
-  background-color: var(--accent-gold);
-  color: white;
-  border: none;
-  border-radius: 8px;
+  padding: 0.9rem;
   font-weight: 600;
   font-size: 1rem;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 0.5rem;
+  
+  background: linear-gradient(135deg, #222222, #0d0d0d);
+  color: #ffffff;
+  border: 1px solid #ffcc00;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
+  background: linear-gradient(135deg, #ffcc00, #d4a700);
+  color: #000000;
+  border-color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px #8e9707
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
 }
 
 .btn-secondary {
   width: 100%;
   padding: 0.6rem;
   background: transparent;
-  color: var(--accent-gold);
-  border: 1px solid var(--accent-gold);
+  color: var(--accent-yellow);
+  border: 1px solid var(--accent-yellow);
   border-radius: 8px;
   cursor: pointer;
   margin-top: 1rem;
@@ -109,13 +116,13 @@ body {
 }
 
 .btn-secondary:hover {
-  background-color: var(--accent-gold);
-  color: white;
+  background-color: var(--accent-yellow);
+  color: #000;
 }
 
 .welcome-banner {
-  background: rgba(217, 119, 6, 0.1);
-  border: 1px solid var(--accent-gold);
+  background: rgba(255, 204, 0, 0.1);
+  border: 1px solid var(--accent-yellow);
   padding: 1rem;
   border-radius: 8px;
   text-align: center;
@@ -133,14 +140,14 @@ body {
 }
 
 .card-footer a {
-  color: var(--accent-gold);
+  color: var(--accent-yellow);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s, text-decoration 0.3s;
 }
 
 .card-footer p a:hover {
-  color: #8e9707;
+  color: #fff;
   text-decoration: underline;
 }
 
@@ -158,11 +165,11 @@ body {
 }
 
 .btn-home:hover {
-  background-color: var(--accent-gold);
-  border-color: var(--accent-gold);
-  color: #ffffff !important;
+  background-color: var(--accent-yellow);
+  border-color: var(--accent-yellow);
+  color: #000000 !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px #8e9707;
+  box-shadow: 0 4px 12px rgba(255, 204, 0, 0.4);
 }
 
 .hidden {

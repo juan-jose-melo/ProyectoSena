@@ -163,12 +163,12 @@ const herramientas = [
 
 
 
-  {  id: 161, nombre: "Caja herraminetas pro", url: "herramientas/cajaherramientas-pro.html" },
-  {  id: 162, nombre: "Compresor de aire 24L", url: "herramientas/compresor-de-aire24l.html" },
-  {  id: 163, nombre: "Cortadora de ceramica", url: "herramientas/cortadora-de-ceramica.html" },
-  {  id: 164, nombre: "hidrolavadora ELITE", url: "herramientas/hidrolavadora-electrica.html" },
-  {  id: 165, nombre: "Juego de llaves metricas", url: "herramientas/juegollaves-metrica.html" },
-  {  id: 166, nombre: "Lijadora orbital", url: "herramientas/lijadora-orbital.html" }
+  {  id: 162, nombre: "Caja herraminetas pro", url: "cajaherramientas-pro.html" },
+  {  id: 163, nombre: "Compresor de aire 24L", url: "compresor-de-aire24l.html" },
+  {  id: 164, nombre: "Cortadora de ceramica", url: "cortadora-de-ceramica.html" },
+  {  id: 165, nombre: "hidrolavadora ELITE", url: "hidrolavadora-electrica.html" },
+  {  id: 166, nombre: "Juego de llaves metricas", url: "juegollaves-metrica.html" },
+  {  id: 167, nombre: "Lijadora orbital", url: "lijadora-orbital.html" }
 ];
 
 // Función para filtrar y mostrar los resultados en tiempo real

@@ -1,26 +1,25 @@
 :root {
-  --bg-dark: #0f172a;
-  --card-bg: rgba(30, 41, 59, 0.5); 
-  --accent-gold: #000000;
-  --accent-hover: #0e0e0e;
-  --text-main: #ffffff;
-  --text-muted: #000;
-  --input-bg: rgba(112, 105, 7, 0.089);
-  --border-color: rgba(255, 255, 255, 0.1);
+  --bg-dark: #121212;
+  --card-bg: rgba(20, 20, 20, 0.75); 
+  --accent-yellow: #ffcc00;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --input-bg: rgba(10, 10, 10, 0.85);
+  --border-color: rgba(255, 255, 255, 0.15);
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--bg-dark);
   color: var(--text-main);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 
-  background-image: url('nose.png'); 
+  /* Imagen de fondo solicitada */
+  background-image: url('talvez.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -34,12 +33,14 @@ body {
   padding: 2.5rem;
   width: 100%;
   max-width: 420px;
-  box-shadow: 0 20px 25px -5px rgba(255, 238, 1, 0.5);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px); 
 }
 
-.card-header h2 {
+.card-header h1, .card-header h2 {
   margin: 0 0 0.5rem 0;
   font-size: 1.8rem;
+  color: var(--text-main);
 }
 
 .card-header p {
@@ -61,53 +62,66 @@ body {
 }
 
 .input-group input {
-  background-color: rgba(22, 22, 18, 0.267);
+  background-color: var(--input-bg);
   border: 1px solid var(--border-color);
   color: var(--text-main);
   padding: 0.75rem 1rem;
   border-radius: 8px;
   font-size: 0.95rem;
   outline: none;
-  transition: border-color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .input-group input:focus {
-  border-color: var(--accent-gold);
+  border-color: var(--accent-yellow);
+  box-shadow: 0 0 8px rgba(255, 204, 0, 0.4);
 }
 
+/* --- ESTILO 4 SELECCIONADO PARA EL BOTÓN PRINCIPAL --- */
 .btn-primary {
   width: 100%;
-  padding: 0.8rem;
-  background-color: var(--accent-gold);
-  color: white;
-  border: none;
-  border-radius: 8px;
+  padding: 0.85rem;
   font-weight: 600;
   font-size: 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   margin-top: 0.5rem;
+  
+  background: linear-gradient(135deg, #222222, #0d0d0d);
+  color: #ffffff;
+  border: 1px solid var(--accent-yellow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
+  background: linear-gradient(135deg, #ffcc00, #d4a700);
+  color: #000000;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
 }
 
 .btn-secondary {
   width: 100%;
   padding: 0.6rem;
   background: transparent;
-  color: var(--accent-gold);
-  border: 1px solid var(--accent-gold);
+  color: var(--accent-yellow);
+  border: 1px solid var(--accent-yellow);
   border-radius: 8px;
   cursor: pointer;
   margin-top: 0.8rem;
-  color:white;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent-yellow);
+  color: #000000;
 }
 
 .welcome-banner {
-  background: rgba(7, 7, 3, 0.459);
-  border: 1px solid var(--accent-gold);
+  background: rgba(255, 204, 0, 0.1);
+  border: 1px solid var(--accent-yellow);
   padding: 1rem;
   border-radius: 8px;
   text-align: center;
@@ -125,9 +139,15 @@ body {
 }
 
 .card-footer a {
-  color: var(--accent-gold);
+  color: var(--accent-yellow);
   text-decoration: none;
   font-weight: 600;
+  transition: color 0.3s;
+}
+
+.card-footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 /* --- ESTILOS DEL BOTÓN VOLVER --- */
@@ -144,8 +164,13 @@ body {
 }
 
 .btn-home:hover {
-  background-color: var(--accent-gold);
-  border-color: var(--accent-gold);
-  color: #ffffff !important;
+  background-color: var(--accent-yellow);
+  border-color: var(--accent-yellow);
+  color: #000000 !important;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 204, 0, 0.4);
+}
+
+.hidden {
+  display: none;
 }
