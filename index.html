@@ -5,286 +5,297 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GINE - Tu intermediario favorito</title>
   <link rel="stylesheet" href="menu/estilos.css">
+  <!-- Google Fonts para tipografías modernas e industriales -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>ㅤ</h1>
+
+  <!-- Encabezado Principal -->
   <header class="header">
     <div class="header-main">
       <div class="header-container">
         
-        <div class="logo-container"><img src="menu/logo.png" class="logo" alt="Logo"></div>
-
-      
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="menu/logo.png" class="logo" alt="Logo GINE">
+          </a>
+        </div>
 
         <div class="menu-wrapper">
-          <button class="menu-btn">
-            <span class="hamburger">☰</span> Menú ▾
+          <button class="menu-btn" aria-label="Abrir menú de navegación">
+            <span class="hamburger">☰</span> Menú <span class="arrow-down">▾</span>
           </button>
           
           <ul class="dropdown-menu">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Categorías</a></li>
-            <li><a href="#">Ofertas</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#section-title-badge">Categorías</a></li>
+            <li><a href="#ofertas">Ofertas</a></li>
+            <li><a href="socios.html">Contacto</a></li>
           </ul>
         </div>
 
-<div class="search-box">
-  <input type="text" id="miBuscador" placeholder="¿Qué herramientas estás buscando?" oninput="filtrarHerramientas()">
-  <button class="search-btn">🔍</button>
-  
-  <!-- La lista debe ir DENTRO de search-box para que la posición absoluta funcione -->
-  <ul id="listaResultados" class="lista-desplegable"></ul>
-</div>
+        <div class="search-box">
+          <input type="text" id="miBuscador" placeholder="¿Qué herramientas estás buscando?" oninput="filtrarHerramientas()" autocomplete="off">
+          <button class="search-btn" aria-label="Buscar">🔍</button>
+          <ul id="listaResultados" class="lista-desplegable"></ul>
+        </div>
 
         <nav class="header-links">
-          <a href="#" class="nav-item">Encuentra tu tienda</a>
-          <a href="iniciarseccion.html" class="nav-item user-icon">Inicia sesión ▾</a>
-          <a href="#" class="nav-item cart-icon">Compras</a>
+          <a href="#" class="nav-item">
+            <span class="nav-icon">📍</span> Encuentra tu tienda
+          </a>
+          <a href="iniciarseccion.html" class="nav-item user-icon">
+            <span class="nav-icon">👤</span> Inicia sesión ▾
+          </a>
+          <a href="#" class="nav-item cart-icon" aria-label="Carrito de compras">
+            <span class="nav-icon">🛒</span> Compras
+          </a>
         </nav>
 
       </div>
     </div>
 
     <div class="header-banner">
+      <span class="pulse-badge">OFERTA</span>
       <strong>ENVÍOS GRATIS</strong> En todos los productos por compras mayores a $ 50.000*
     </div>
   </header>
 
-<div class="slider-wrapper">
-  <button class="arrow arrow-left" id="prevBtn" aria-label="Anterior">&#10094;</button>
-  <button class="arrow arrow-right" id="nextBtn" aria-label="Siguiente">&#10095;</button>
+  <!-- Main Content -->
+  <main>
+    <!-- Slider Principal Promocional -->
+    <section class="slider-wrapper fade-in-section">
+      <button class="arrow arrow-left" id="prevBtn" aria-label="Anterior">&#10094;</button>
+      <button class="arrow arrow-right" id="nextBtn" aria-label="Siguiente">&#10095;</button>
 
-
-
-
-<hr>
-<br>
-
-  <div class="slider-viewport">
-    <div class="slider-track" id="sliderTrack">
-      <button class="slide">
-        <img src="menu/slider1.1.png" alt="Herramienta 1" class="IMAGEN-SLIDER">
-      </button>
-      <button class="slide">
-        <img src="menu/slider2.png" alt="Herramienta 2" class="IMAGEN-SLIDER">
-      </button>
-      <button class="slide">
-        <img src="menu/slider3.PNG" alt="Herramienta 3" class="IMAGEN-SLIDER">
-      </button>
-    </div>
-  </div> 
-
-  <div class="dots-container" id="dotsContainer">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
-</div>
-
-
-  
-
-
-  <hr>
-
-  <p class="parrafo-slider">¡𝕰𝖘𝖙𝖆𝖘 𝖘𝖔𝖓 𝖆𝖑𝖌𝖚𝖓𝖆𝖘 𝖉𝖊 𝖑𝖆𝖘 𝖍𝖊𝖗𝖗𝖆𝖒𝖎𝖊𝖓𝖙𝖆𝖘 𝖉𝖎𝖘𝖕𝖔𝖓𝖎𝖇𝖑𝖊𝖘 𝖊𝖓 𝖓𝖚𝖊𝖘𝖙𝖗𝖔 𝖘𝖎𝖙𝖎𝖔 𝖜𝖊𝖇 𝖕𝖔𝖗 𝖕𝖆𝖗𝖙𝖊 𝖉𝖊 𝖓𝖚𝖊𝖘𝖙𝖗𝖔𝖘 𝖘𝖔𝖈𝖎𝖔𝖘!</p>
-
-
-   <hr>
-   
-  <div class="mini-slider-container">
-
-  <div class="mini-slider-viewport">
-    <button id="miniPrevBtn" class="mini-arrow mini-arrow-left">&#10094;</button>
-    <button id="miniNextBtn" class="mini-arrow mini-arrow-right">&#10095;</button>
-    <div class="mini-slider-track" id="miniSliderTrack">
-      
-      <a href="herramientas/hidrolavadora-electrica.html" class="mini-box">
-        <div class="mini-box-img">
-          <img src="menu/hisrolavadora.webp" alt="Hidrolavadora ELITE">
+      <div class="slider-viewport">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slide">
+            <img src="menu/slider1.1.png" alt="Promoción Herramientas 1" class="IMAGEN-SLIDER">
+          </div>
+          <div class="slide">
+            <img src="menu/slider2.png" alt="Promoción Herramientas 2" class="IMAGEN-SLIDER">
+          </div>
+          <div class="slide">
+            <img src="menu/slider3.PNG" alt="Promoción Herramientas 3" class="IMAGEN-SLIDER">
+          </div>
         </div>
-        <span class="mini-box-title">Hidrolavadora ELITE 1500W</span>
-      </a>
+      </div> 
 
-      <a href="herramientas/taladro-inalambrico.html" class="mini-box">
-        <div class="mini-box-img">
-          <img src="menu/taladro.png" alt="Taladro Inalámbrico">
-        </div>
-        <span class="mini-box-title">Taladro Inalámbrico 20V</span>
-      </a>
+      <div class="dots-container" id="dotsContainer">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
 
-      <a href="herramientas/cajaherramientas-pro.html" class="mini-box">
-        <div class="mini-box-img">
-          <img src="menu/cajherramienta.webp" alt="Caja de Herramientas">
-        </div>
-        <span class="mini-box-title">Caja de Herramientas Pro</span>
-      </a>
+    <div class="divider-line"></div>
 
+    <!-- Título Destacado -->
+    <section class="titulo-destacado-container fade-in-section">
+      <h2 class="parrafo-slider">
+        ¡Estas son algunas de las herramientas disponibles en nuestro sitio web por parte de nuestros socios!
+      </h2>
+    </section>
 
-      <a href="herramientas/juegollaves-metrica.html" class="mini-box">
-        <div class="mini-box-img">
-          <img src="menu/llavesjuego.png" alt="Juego de Llaves">
-        </div>
-        <span class="mini-box-title">Juego de Llaves Métrica</span>
-      </a>
+    <div class="divider-line"></div>
 
-      <a href="herramientas/cortadora-de-ceramica.html" class="mini-box">
-        <div class="mini-box-img">
-          <img src="menu/cortadoraceramica.png" alt="Cortadora de Cerámica">
-        </div>
-        <span class="mini-box-title">Cortadora de Cerámica</span>
-      </a>
-
-      <a href="herramientas/compresor-de-aire24l.html" class="mini-box">
-        <div class="mini-box-img">
-          <img src="menu/compresora.webp" alt="Compresor de Aire">
-        </div>
-        <span class="mini-box-title">Compresor de Aire 24L</span>
-      </a>
-
-      <a href="herramientas/sierra-circular.html" class="mini-box">
-        <div class="mini-box-img">
-          <img src="menu/sierracircular.webp" alt="Sierra Circular">
-        </div>
-        <span class="mini-box-title">Sierra Circular 1400W</span>
-      </a>
-
-      <a href="herramientas/soldador-inventer.html" class="mini-box">
-        <div class="mini-box-img">
-          <img src="menu/soldador.jfif" alt="Soldador Inverter">
-        </div>
-        <span class="mini-box-title">Soldador Inverter 160A</span>
-      </a>
-
-      <a href="herramientas/lijadora-orbital.html" class="mini-box">
-        <div class="mini-box-img">
-          <img src="menu/lijadora.webp" alt="Lijadora Orbital">
-        </div>
-        <span class="mini-box-title">Lijadora Orbital 250W</span>
-      </a>
-
-    </div>
-  </div>
-  </div>
-<hr>
-
-<div class="caja-publicidad">
-  <div class="banner-publicidad">
-    <img src="menu/imagen5.png" alt="Publicidad 1">
-  </div>
-  <div class="banner-publicidad">
-    <img src="menu/imagen6.png" alt="Publicidad 2">
-  </div>
-</div>
-<hr>
-
-
-<div class="contenedor-principalrrr">
-  <!-- 1. CAJA GRANDE VERTICAL (IZQUIERDA) -->
-  <div class="cajarrr caja-granderrr">
-    <a href="socios.html" style="width: 100%; height: 100%; display: block;">
-      <img src="menu/gime.png" alt="Producto Principal" class="img-caja-granderrr">
-    </a>
-  </div>
-
-  <!-- COLUMNA DERECHA -->
-  <div class="columna-derecharrr">
-    <!-- 2. CAJA SUPERIOR DERECHA -->
-    <div class="cajarrr caja-superiorrrr">
-      <h2>NUESTROS SOCIOS</h2>
-      <p>Solo trabajamos con las mejores empresas para tu comodidad</p>
-    </div>
-
-    <!-- 3. CAJA INFERIOR DERECHA (SLIDER INFINITO) -->
-    <div class="cajarrr caja-sliderrrr">
-      <div class="slider-containerrrr">
-        <div class="slider-trackrrr">
-          <!-- Primer bloque de imágenes -->
-          <div class="sliderrr"><a href="socios.html"><img src="menu/1ferre.png" alt="Producto 1"></a></div>
-          <div class="sliderrr"><a href="socios.html"><img src="menu/2ferre.png" alt="Producto 2"></a></div>
-          <div class="sliderrr"><a href="socios.html"><img src="menu/3ferre.png" alt="Producto 3"></a></div>
-          <div class="sliderrr"><a href="socios.html"><img src="menu/4ferre.png" alt="Producto 4"></a></div>
-          <div class="sliderrr"><a href="socios.html"><img src="menu/5ferre.png" alt="Producto 5"></a></div>
-          <div class="sliderrr"><a href="socios.html"><img src="menu/6ferre.png" alt="Producto 5"></a></div>
+    <!-- Mini Slider de Productos Destacados -->
+    <section class="mini-slider-container fade-in-section">
+      <div class="section-title-badge">Catálogo de Herramientas</div>
+      <div class="mini-slider-viewport">
+        <button id="miniPrevBtn" class="mini-arrow mini-arrow-left" aria-label="Anterior">&#10094;</button>
+        <button id="miniNextBtn" class="mini-arrow mini-arrow-right" aria-label="Siguiente">&#10095;</button>
+        
+        <div class="mini-slider-track" id="miniSliderTrack">
           
-          <!-- Bloque duplicado para el bucle infinito -->
-          <div class="sliderrr"><a href="socios.html"><img src="menu/1ferre.png" alt="Producto 1"></a></div>
-          <div class="sliderrr"><a href="socios.html"><img src="menu/2ferre.png" alt="Producto 2"></a></div>
-          <div class="sliderrr"><a href="socios.html"><img src="menu/3ferre.png" alt="Producto 3"></a></div>
-          <div class="sliderrr"><a href="socios.html"><img src="menu/4ferre.png" alt="Producto 4"></a></div>
-          <div class="sliderrr"><a href="socios.html"><img src="menu/5ferre.png" alt="Producto 5"></a></div>
-          <div class="sliderrr"><a href="socios.html"><img src="menu/6ferre.png" alt="Producto 5"></a></div>
+          <a href="herramientas/hidrolavadora-electrica.html" class="mini-box">
+            <div class="mini-box-img">
+              <img src="menu/hisrolavadora.webp" alt="Hidrolavadora ELITE">
+            </div>
+            <span class="mini-box-title">Hidrolavadora ELITE 1500W</span>
+          </a>
+
+          <a href="herramientas/taladro-inalambrico.html" class="mini-box">
+            <div class="mini-box-img">
+              <img src="menu/taladro.png" alt="Taladro Inalámbrico">
+            </div>
+            <span class="mini-box-title">Taladro Inalámbrico 20V</span>
+          </a>
+
+          <a href="herramientas/cajaherramientas-pro.html" class="mini-box">
+            <div class="mini-box-img">
+              <img src="menu/cajherramienta.webp" alt="Caja de Herramientas">
+            </div>
+            <span class="mini-box-title">Caja de Herramientas Pro</span>
+          </a>
+
+          <a href="herramientas/juegollaves-metrica.html" class="mini-box">
+            <div class="mini-box-img">
+              <img src="menu/llavesjuego.png" alt="Juego de Llaves">
+            </div>
+            <span class="mini-box-title">Juego de Llaves Métrica</span>
+          </a>
+
+          <a href="herramientas/cortadora-de-ceramica.html" class="mini-box">
+            <div class="mini-box-img">
+              <img src="menu/cortadoraceramica.png" alt="Cortadora de Cerámica">
+            </div>
+            <span class="mini-box-title">Cortadora de Cerámica</span>
+          </a>
+
+          <a href="herramientas/compresor-de-aire24l.html" class="mini-box">
+            <div class="mini-box-img">
+              <img src="menu/compresora.webp" alt="Compresor de Aire">
+            </div>
+            <span class="mini-box-title">Compresor de Aire 24L</span>
+          </a>
+
+          <a href="herramientas/sierra-circular.html" class="mini-box">
+            <div class="mini-box-img">
+              <img src="menu/sierracircular.webp" alt="Sierra Circular">
+            </div>
+            <span class="mini-box-title">Sierra Circular 1400W</span>
+          </a>
+
+          <a href="herramientas/soldador-inventer.html" class="mini-box">
+            <div class="mini-box-img">
+              <img src="menu/soldador.jfif" alt="Soldador Inverter">
+            </div>
+            <span class="mini-box-title">Soldador Inverter 160A</span>
+          </a>
+
+          <a href="herramientas/lijadora-orbital.html" class="mini-box">
+            <div class="mini-box-img">
+              <img src="menu/lijadora.webp" alt="Lijadora Orbital">
+            </div>
+            <span class="mini-box-title">Lijadora Orbital 250W</span>
+          </a>
+
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<hr>
+    </section>
 
-<br>
-<br>
+    <div class="divider-line"></div>
 
-<script src="menu/script.js"></script>
+    <!-- Banners Publicitarios -->
+    <section class="caja-publicidad fade-in-section">
+      <div class="banner-publicidad">
+        <img src="menu/imagen5.png" alt="Publicidad 1">
+      </div>
+      <div class="banner-publicidad">
+        <img src="menu/imagen6.png" alt="Publicidad 2">
+      </div>
+    </section>
 
+    <div class="divider-line"></div>
+
+    <!-- Sección Especial: Nuestros Socios -->
+    <section class="contenedor-principalrrr fade-in-section">
+      <!-- Caja Grande Izquierda -->
+      <div class="cajarrr caja-granderrr">
+        <a href="socios.html" aria-label="Ir a Socios">
+          <img src="menu/gime.png" alt="Socio Principal GINE" class="img-caja-granderrr">
+          <div class="overlay-badge">CONOCE MÁS</div>
+        </a>
+      </div>
+
+      <!-- Columna Derecha -->
+      <div class="columna-derecharrr">
+        <div class="cajarrr caja-superiorrrr">
+          <h2>NUESTROS SOCIOS</h2>
+          <p>Solo trabajamos con las mejores empresas para tu tranquilidad y comodidad</p>
+        </div>
+
+        <div class="cajarrr caja-sliderrrr">
+          <div class="slider-containerrrr">
+            <div class="slider-trackrrr">
+              <!-- Bloque 1 -->
+              <div class="sliderrr"><a href="socios.html"><img src="menu/1ferre.png" alt="Ferretería 1"></a></div>
+              <div class="sliderrr"><a href="socios.html"><img src="menu/2ferre.png" alt="Ferretería 2"></a></div>
+              <div class="sliderrr"><a href="socios.html"><img src="menu/3ferre.png" alt="Ferretería 3"></a></div>
+              <div class="sliderrr"><a href="socios.html"><img src="menu/4ferre.png" alt="Ferretería 4"></a></div>
+              <div class="sliderrr"><a href="socios.html"><img src="menu/5ferre.png" alt="Ferretería 5"></a></div>
+              <div class="sliderrr"><a href="socios.html"><img src="menu/6ferre.png" alt="Ferretería 6"></a></div>
+              
+              <!-- Duplicado para Bucle Infinito Continuo -->
+              <div class="sliderrr"><a href="socios.html"><img src="menu/1ferre.png" alt="Ferretería 1"></a></div>
+              <div class="sliderrr"><a href="socios.html"><img src="menu/2ferre.png" alt="Ferretería 2"></a></div>
+              <div class="sliderrr"><a href="socios.html"><img src="menu/3ferre.png" alt="Ferretería 3"></a></div>
+              <div class="sliderrr"><a href="socios.html"><img src="menu/4ferre.png" alt="Ferretería 4"></a></div>
+              <div class="sliderrr"><a href="socios.html"><img src="menu/5ferre.png" alt="Ferretería 5"></a></div>
+              <div class="sliderrr"><a href="socios.html"><img src="menu/6ferre.png" alt="Ferretería 6"></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <br><br>
+
+  <!-- Footer -->
   <footer class="footer-container">
-  <div class="footer-content">
-    
-    <div class="footer-brand">
-      <h2 class="footer-logo">GINE<span>.</span></h2>
-      <p class="footer-description">
-        Facilitamos conexiones seguras y transparentes entre compradores y vendedores de todo el mundo.
-      </p>
-      <div class="badges">
-        <span class="badge">🔒 Transacción Segura</span>
-        <span class="badge">🤝 Garantía Mediada</span>
+    <div class="footer-content">
+      
+      <div class="footer-brand">
+        <h2 class="footer-logo">GINE<span>.</span></h2>
+        <p class="footer-description">
+          Facilitamos conexiones seguras y transparentes entre compradores y vendedores de todo el mundo.
+        </p>
+        <div class="badges">
+          <span class="badge">🔒 Transacción Segura</span>
+          <span class="badge">🤝 Garantía Mediada</span>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Para Compradores</h3>
+        <ul>
+          <li><a href="#">Explorar Mercado</a></li>
+          <li><a href="#">Protección al Comprador</a></li>
+          <li><a href="#">Métodos de Pago</a></li>
+          <li><a href="#">Guía de Compra</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Para Vendedores</h3>
+        <ul>
+          <li><a href="#">Vender en la Plataforma</a></li>
+          <li><a href="#">Comisiones y Tarifas</a></li>
+          <li><a href="#">Centro de Vendedores</a></li>
+          <li><a href="#">Historias de Éxito</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Centro de Confianza</h3>
+        <ul>
+          <li><a href="#">Resolución de Disputas</a></li>
+          <li><a href="#">Términos del Servicio</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Soporte 24/7</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 GINE Inc. Todos los derechos reservados.</p>
+      <div class="social-links">
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="Twitter">Twitter</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
       </div>
     </div>
+  </footer>
 
-    <div class="footer-links">
-      <h3>Para Compradores</h3>
-      <ul>
-        <li><a href="#">Explorar Mercado</a></li>
-        <li><a href="#">Protección al Comprador</a></li>
-        <li><a href="#">Métodos de Pago</a></li>
-        <li><a href="#">Guía de Compra</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-links">
-      <h3>Para Vendedores</h3>
-      <ul>
-        <li><a href="#">Vender en la Plataforma</a></li>
-        <li><a href="#">Comisiones y Tarifas</a></li>
-        <li><a href="#">Centro de Vendedores</a></li>
-        <li><a href="#">Historias de Éxito</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-links">
-      <h3>Centro de Confianza</h3>
-      <ul>
-        <li><a href="#">Resolución de Disputas</a></li>
-        <li><a href="#">Términos del Servicio</a></li>
-        <li><a href="#">Política de Privacidad</a></li>
-        <li><a href="#">Soporte 24/7</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>&copy; 2026 GINE Inc. Todos los derechos reservados.</p>
-    <div class="social-links">
-      <a href="#" aria-label="LinkedIn">LinkedIn</a>
-      <a href="#" aria-label="Twitter">Twitter</a>
-      <a href="#" aria-label="Instagram">Instagram</a>
-    </div>
-  </div>
-</footer>
-
-<script src="https://cdn.botpress.cloud/webchat/v3.7/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2026/08/23/17/20260823171107-LYYGQ6CT.js" defer></script>
-    
+  <!-- Scripts -->
+  <script src="menu/script.js"></script>
+  <script src="https://cdn.botpress.cloud/webchat/v3.7/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/08/23/17/20260823171107-LYYGQ6CT.js" defer></script>
 </body>
 </html>

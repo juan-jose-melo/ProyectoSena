@@ -1,4 +1,44 @@
-// Array con la lista de herramientas/páginas
+// ==========================================================================
+// GINE - LÓGICA Y NAVEGACIÓN GLOBAL DE HERRAMIENTAS
+// ==========================================================================
+
+// 1. Animación Reveal progresivo al hacer Scroll
+document.addEventListener("DOMContentLoaded", () => {
+  const faders = document.querySelectorAll('.fade-in-section');
+  const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -30px 0px" };
+
+  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, appearOptions);
+
+  faders.forEach(fader => appearOnScroll.observe(fader));
+});
+
+// 2. Control del Menú Desplegable del Header
+document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn = document.querySelector('.menu-btn');
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+
+  if (menuBtn && dropdownMenu) {
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('show');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (!dropdownMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+        dropdownMenu.classList.remove('show');
+      }
+    });
+  }
+});
+
+// 3. Array completo de herramientas
 const herramientas = [
   { id: 6, nombre: "Alicate", url: "alicate.html" },
   { id: 7, nombre: "Azada", url: "azada.html" },
@@ -156,22 +196,15 @@ const herramientas = [
   { id: 159, nombre: "Zunchadora manual", url: "zunchadora-manual.html" },
   { id: 160, nombre: "Zapatilla de lijado", url: "zapatilla-de-lijado.html" },
   { id: 161, nombre: "Zocalo para dados", url: "zocalo-para-dados.html" },
-
-
-
-  //* ultimo agregado */
-
-
-
-  {  id: 162, nombre: "Caja herraminetas pro", url: "cajaherramientas-pro.html" },
-  {  id: 163, nombre: "Compresor de aire 24L", url: "compresor-de-aire24l.html" },
-  {  id: 164, nombre: "Cortadora de ceramica", url: "cortadora-de-ceramica.html" },
-  {  id: 165, nombre: "hidrolavadora ELITE", url: "hidrolavadora-electrica.html" },
-  {  id: 166, nombre: "Juego de llaves metricas", url: "juegollaves-metrica.html" },
-  {  id: 167, nombre: "Lijadora orbital", url: "lijadora-orbital.html" }
+  { id: 162, nombre: "Caja herraminetas pro", url: "cajaherramientas-pro.html" },
+  { id: 163, nombre: "Compresor de aire 24L", url: "compresor-de-aire24l.html" },
+  { id: 164, nombre: "Cortadora de ceramica", url: "cortadora-de-ceramica.html" },
+  { id: 165, nombre: "hidrolavadora ELITE", url: "hidrolavadora-electrica.html" },
+  { id: 166, nombre: "Juego de llaves metricas", url: "juegollaves-metrica.html" },
+  { id: 167, nombre: "Lijadora orbital", url: "lijadora-orbital.html" }
 ];
 
-// Función para filtrar y mostrar los resultados en tiempo real
+// 4. Filtrado en tiempo real
 function filtrarHerramientas() {
   const inputEl = document.getElementById("miBuscador");
   const lista = document.getElementById("listaResultados");
@@ -186,7 +219,6 @@ function filtrarHerramientas() {
     return;
   }
 
-  // Filtrado de las coincidencias
   const coincidencias = herramientas.filter(item =>
     item.nombre.toLowerCase().includes(input)
   );
@@ -205,17 +237,10 @@ function filtrarHerramientas() {
       a.style.color = "inherit";
       a.style.cursor = "pointer";
 
-      // EVENTO DE NAVEGACIÓN FORZADA
       a.addEventListener("click", (e) => {
         e.preventDefault();
-        
-        // Obtener la carpeta donde está guardada la página actual
         let rutaBase = window.location.href;
-        
-        // Quitar el archivo actual de la URL para quedarnos solo con la carpeta
         rutaBase = rutaBase.substring(0, rutaBase.lastIndexOf('/') + 1);
-        
-        // Redirigir concatenando directamente al archivo sin duplicar carpetas
         window.location.href = rutaBase + item.url;
       });
 
@@ -227,7 +252,6 @@ function filtrarHerramientas() {
   }
 }
 
-// Escuchar evento de escritura en el input
 document.addEventListener("DOMContentLoaded", () => {
   const inputEl = document.getElementById("miBuscador");
   if (inputEl) {
@@ -235,7 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Ocultar la lista si se hace clic fuera del área del buscador
 document.addEventListener("click", function (e) {
   const buscador = document.querySelector(".search-box");
   const lista = document.getElementById("listaResultados");
