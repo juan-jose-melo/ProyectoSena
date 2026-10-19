@@ -1,21 +1,47 @@
-// ================= MENÚ DESPLEGABLE =================
-const menuBtn = document.querySelector('.menu-btn');
-const dropdownMenu = document.querySelector('.dropdown-menu');
+// ==========================================================================
+// GINE - SCRIPT PRINCIPAL OPTIMIZADO COMPLETO
+// ==========================================================================
 
-if (menuBtn && dropdownMenu) {
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdownMenu.classList.toggle('show');
-  });
+// --- ANIMACIÓN REVEAL EN SCROLL ---
+document.addEventListener("DOMContentLoaded", () => {
+  const faders = document.querySelectorAll('.fade-in-section');
+  const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -30px 0px" };
 
-  window.addEventListener('click', (e) => {
-    if (!dropdownMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-      dropdownMenu.classList.remove('show');
-    }
-  });
-}
+  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, appearOptions);
 
-// ================= SLIDER PRINCIPAL =================
+  faders.forEach(fader => appearOnScroll.observe(fader));
+});
+
+// --- MENÚ DESPLEGABLE HAMBURGUESA CORREGIDO PARA TÁCTIL ---
+document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn = document.querySelector('.menu-btn');
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+
+  if (menuBtn && dropdownMenu) {
+    const toggleMenu = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('show');
+    };
+
+    menuBtn.addEventListener('click', toggleMenu);
+
+    document.addEventListener('click', (e) => {
+      if (!dropdownMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+        dropdownMenu.classList.remove('show');
+      }
+    });
+  }
+});
+
+// ================= SLIDER PRINCIPAL PROMOCIONAL =================
 const track = document.getElementById('sliderTrack');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -25,12 +51,13 @@ let mainIndex = 1;
 let isMainTransitioning = false;
 let totalMainOriginals = 0;
 let allMainSlides = [];
-let mainAutoSlideInterval;
+let mainAutoSlideInterval = null;
 
 function startMainAutoSlide() {
+  if (mainAutoSlideInterval) clearInterval(mainAutoSlideInterval);
   mainAutoSlideInterval = setInterval(() => {
     if (typeof moveMainSlide === 'function') moveMainSlide(mainIndex + 1);
-  }, 4000);
+  }, 4500);
 }
 
 function resetMainAutoSlide() {
@@ -39,31 +66,30 @@ function resetMainAutoSlide() {
 }
 
 if (track && prevBtn && nextBtn && dotsContainer) {
-  let mainOriginals = Array.from(track.querySelectorAll('.slide'));
+  const mainOriginals = Array.from(track.querySelectorAll('.slide'));
   totalMainOriginals = mainOriginals.length;
 
   if (totalMainOriginals > 0) {
     const mainFirstClone = mainOriginals[0].cloneNode(true);
     const mainLastClone = mainOriginals[totalMainOriginals - 1].cloneNode(true);
 
+    mainFirstClone.classList.add('clone');
+    mainLastClone.classList.add('clone');
+
     track.appendChild(mainFirstClone);
     track.insertBefore(mainLastClone, mainOriginals[0]);
 
     allMainSlides = Array.from(track.querySelectorAll('.slide'));
 
-    function getMainSlideWidth() {
-      const slideWidth = allMainSlides[0].getBoundingClientRect().width;
-      const gap = 20;
-      return slideWidth + gap;
-    }
-
     function setMainTrackPosition(index, animate = true) {
-      const slideWidth = allMainSlides[0].getBoundingClientRect().width;
-      const gap = 20;
+      if (!allMainSlides[index]) return;
+      
+      const slideWidth = allMainSlides[index].getBoundingClientRect().width;
       const viewportWidth = track.parentElement.getBoundingClientRect().width;
+      const gap = window.innerWidth <= 768 ? 10 : 20;
       const offset = (viewportWidth - slideWidth) / 2;
     
-      track.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
+      track.style.transition = animate ? 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
       track.style.transform = `translateX(-${(index * (slideWidth + gap)) - offset}px)`;
       updateDots();
     }
@@ -96,30 +122,43 @@ if (track && prevBtn && nextBtn && dotsContainer) {
       }
     });
 
-    nextBtn.addEventListener('click', () => {
+    const handleNext = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       moveMainSlide(mainIndex + 1);
       resetMainAutoSlide();
-    });
+    };
 
-    prevBtn.addEventListener('click', () => {
+    const handlePrev = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       moveMainSlide(mainIndex - 1);
       resetMainAutoSlide();
-    });
+    };
+
+    nextBtn.addEventListener('click', handleNext);
+    prevBtn.addEventListener('click', handlePrev);
+
+    track.parentElement.addEventListener('mouseenter', () => clearInterval(mainAutoSlideInterval));
+    track.parentElement.addEventListener('mouseleave', () => startMainAutoSlide());
 
     const dots = dotsContainer.querySelectorAll('.dot');
     dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
         moveMainSlide(index + 1);
         resetMainAutoSlide();
       });
     });
 
-    setMainTrackPosition(mainIndex, false);
-    startMainAutoSlide();
+    setTimeout(() => {
+      setMainTrackPosition(mainIndex, false);
+      startMainAutoSlide();
+    }, 100);
   }
 }
 
-// ================= MINI SLIDER =================
+// ================= MINI SLIDER DE HERRAMIENTAS =================
 const miniTrack = document.getElementById('miniSliderTrack');
 const miniPrevBtn = document.getElementById('miniPrevBtn');
 const miniNextBtn = document.getElementById('miniNextBtn');
@@ -128,12 +167,13 @@ let miniIndex = 5;
 let isMiniTransitioning = false;
 let totalMiniOriginals = 0;
 let visibleCount = 5;
-let miniAutoSlideInterval;
+let miniAutoSlideInterval = null;
 
 function startMiniAutoSlide() {
+  if (miniAutoSlideInterval) clearInterval(miniAutoSlideInterval);
   miniAutoSlideInterval = setInterval(() => {
     if (typeof moveMiniSlide === 'function') moveMiniSlide(miniIndex + 1);
-  }, 4500);
+  }, 5000);
 }
 
 function resetMiniAutoSlide() {
@@ -142,7 +182,7 @@ function resetMiniAutoSlide() {
 }
 
 if (miniTrack && miniPrevBtn && miniNextBtn) {
-  let miniOriginals = Array.from(miniTrack.querySelectorAll('.mini-box'));
+  const miniOriginals = Array.from(miniTrack.querySelectorAll('.mini-box'));
   totalMiniOriginals = miniOriginals.length;
 
   if (totalMiniOriginals > 0) {
@@ -153,17 +193,17 @@ if (miniTrack && miniPrevBtn && miniNextBtn) {
       miniTrack.insertBefore(clonePrepend, miniTrack.firstChild);
     }
 
-    let allMiniSlides = Array.from(miniTrack.querySelectorAll('.mini-box'));
+    const allMiniSlides = Array.from(miniTrack.querySelectorAll('.mini-box'));
 
     function getMiniBoxWidth() {
       const boxWidth = allMiniSlides[0].getBoundingClientRect().width;
-      const gap = 15;
+      const gap = window.innerWidth <= 768 ? 10 : 12;
       return boxWidth + gap;
     }
 
     function setMiniTrackPosition(index, animate = true) {
       const step = getMiniBoxWidth();
-      miniTrack.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
+      miniTrack.style.transition = animate ? 'transform 0.45s ease-in-out' : 'none';
       miniTrack.style.transform = `translateX(-${index * step}px)`;
     }
 
@@ -186,316 +226,203 @@ if (miniTrack && miniPrevBtn && miniNextBtn) {
       }
     });
 
-    miniNextBtn.addEventListener('click', () => {
+    miniTrack.parentElement.addEventListener('mouseenter', () => clearInterval(miniAutoSlideInterval));
+    miniTrack.parentElement.addEventListener('mouseleave', () => startMiniAutoSlide());
+
+    const handleMiniNext = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       moveMiniSlide(miniIndex + 1);
       resetMiniAutoSlide();
-    });
+    };
 
-    miniPrevBtn.addEventListener('click', () => {
+    const handleMiniPrev = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       moveMiniSlide(miniIndex - 1);
       resetMiniAutoSlide();
-    });
+    };
 
-    setMiniTrackPosition(miniIndex, false);
-    startMiniAutoSlide();
+    miniNextBtn.addEventListener('click', handleMiniNext);
+    miniPrevBtn.addEventListener('click', handleMiniPrev);
+
+    setTimeout(() => {
+      setMiniTrackPosition(miniIndex, false);
+      startMiniAutoSlide();
+    }, 100);
   }
 }
 
-// ================= SLIDER PUBLICIDAD (INFINITO BUCLE) =================
-const pistaQ = document.getElementById('pistaQuantum');
-const btnZPrev = document.getElementById('btnZipPrev');
-const btnZNext = document.getElementById('btnZipNext');
-
-let posSub = 2;
-const totalOriginalesPublicidad = 6;
-let enTransicionQuantum = false;
-let quantumAutoSlideInterval;
-
-function startQuantumAutoSlide() {
-  quantumAutoSlideInterval = setInterval(() => {
-    moveQuantumSlider(posSub + 1);
-  }, 5000);
-}
-
-function resetQuantumAutoSlide() {
-  clearInterval(quantumAutoSlideInterval);
-  startQuantumAutoSlide();
-}
-
-function setQuantumPosition(index, conAnimacion = true) {
-  if (!pistaQ) return;
-  pistaQ.style.transition = conAnimacion ? 'transform 0.5s ease-in-out' : 'none';
-  pistaQ.style.transform = `translateX(-${index * 50}%)`;
-}
-
-function moveQuantumSlider(siguientePos) {
-  if (enTransicionQuantum || !pistaQ) return;
-  enTransicionQuantum = true;
-  posSub = siguientePos;
-  setQuantumPosition(posSub, true);
-}
-
-if (pistaQ) {
-  pistaQ.addEventListener('transitionend', () => {
-    enTransicionQuantum = false;
-
-    if (posSub >= totalOriginalesPublicidad + 2) {
-      posSub = 2;
-      setQuantumPosition(posSub, false);
-    }
-    if (posSub <= 0) {
-      posSub = totalOriginalesPublicidad;
-      setQuantumPosition(posSub, false);
-    }
-  });
-
-  setQuantumPosition(posSub, false);
-  startQuantumAutoSlide();
-}
-
-if (btnZNext && btnZPrev) {
-  btnZNext.addEventListener('click', () => {
-    moveQuantumSlider(posSub + 1);
-    resetQuantumAutoSlide();
-  });
-
-  btnZPrev.addEventListener('click', () => {
-    moveQuantumSlider(posSub - 1);
-    resetQuantumAutoSlide();
-  });
-}
-
-// ================= BUSCADOR DE HERRAMIENTAS =================
+// ================= BUSCADOR DE HERRAMIENTAS CORREGIDO =================
 const herramientas = [
-{ nombre: "Alicate", url: "herramientas/alicate.html" },
-  { nombre: "Azada", url: "herramientas/azada.html" },
-  { nombre: "Arco de sierra", url: "herramientas/arco-de-sierra.html" },
-  { nombre: "Aplanadora manual", url: "herramientas/aplanadora-manual.html" },
-  { nombre: "Azadon", url: "herramientas/azadon.html" },
-  { nombre: "Alezna", url: "herramientas/alezna.html" },
-
-  // B
-  { nombre: "Berbiqui", url: "herramientas/berbiqui.html" },
-  { nombre: "Bomba de aire manual", url: "herramientas/bomba-de-aire-manual.html" },
-  { nombre: "Broca", url: "herramientas/broca.html" },
-  { nombre: "Biseladora", url: "herramientas/biseladora.html" },
-  { nombre: "Buril", url: "herramientas/buril.html" },
-  { nombre: "Botador", url: "herramientas/botador.html" },
-
-  // C
-  { nombre: "Cinta metrica", url: "herramientas/cinta-metrica.html" },
-  { nombre: "Cincel", url: "herramientas/cincel.html" },
-  { nombre: "Compresor de aire", url: "herramientas/compresor-de-aire.html" },
-  { nombre: "Cortafrios", url: "herramientas/cortafrios.html" },
-  { nombre: "Cuter", url: "herramientas/cuter.html" },
-  { nombre: "Clavadora", url: "herramientas/clavadora.html" },
-
-  // D
-  { nombre: "Destornillador", url: "herramientas/destornillador.html" },
-  { nombre: "Dado de impacto", url: "herramientas/dado-de-impacto.html" },
-  { nombre: "Decapador termico", url: "herramientas/decapador-termico.html" },
-  { nombre: "Detector de cables", url: "herramientas/detector-de-cables.html" },
-  { nombre: "Discos de corte", url: "herramientas/discos-de-corte.html" },
-  { nombre: "Dobladora de tubos", url: "herramientas/dobladora-de-tubos.html" },
-
-  // E
-  { nombre: "Esmeriladora", url: "herramientas/esmeriladora.html" },
-  { nombre: "Escuadra de carpintero", url: "herramientas/escuadra-de-carpintero.html" },
-  { nombre: "Escofina", url: "herramientas/escofina.html" },
-  { nombre: "Espatula", url: "herramientas/espatula.html" },
-  { nombre: "Engrapadora manual", url: "herramientas/engrapadora-manual.html" },
-  { nombre: "Extractor de tornillos", url: "herramientas/extractor-de-tornillos.html" },
-
-  // F
-  { nombre: "Formon", url: "herramientas/formon.html" },
-  { nombre: "Fresadora", url: "herramientas/fresadora.html" },
-  { nombre: "Flexometro", url: "herramientas/flexometro.html" },
-  { nombre: "Filtradora de aceite", url: "herramientas/filtradora-de-aceite.html" },
-  { nombre: "Fresa para taladro", url: "herramientas/fresa-para-taladro.html" },
-  { nombre: "Fratas", url: "herramientas/fratas.html" },
-
-  // G
-  { nombre: "Gato hidraulico", url: "herramientas/gato-hidraulico.html" },
-  { nombre: "Grapa industrial", url: "herramientas/grapa-industrial.html" },
-  { nombre: "Guantes de trabajo", url: "herramientas/guantes-de-trabajo.html" },
-  { nombre: "Gubia", url: "herramientas/gubia.html" },
-  { nombre: "Gramil", url: "herramientas/gramil.html" },
-  { nombre: "Generador electrico", url: "herramientas/generador-electrico.html" },
-
-  // H
-  { nombre: "Hacha", url: "herramientas/hacha.html" },
-  { nombre: "Hoe", url: "herramientas/hoe.html" },
-  { nombre: "Herramienta rotativa", url: "herramientas/herramienta-rotativa.html" },
-  { nombre: "Hormigonera", url: "herramientas/hormigonera.html" },
-  { nombre: "Hoja de sierra", url: "herramientas/hoja-de-sierra.html" },
-  { nombre: "Hijuela", url: "herramientas/hijuela.html" },
-
-  // I
-  { nombre: "Inversor de soldadura", url: "herramientas/inversor-de-soldadura.html" },
-  { nombre: "Inyector de grasa", url: "herramientas/inyector-de-grasa.html" },
-  { nombre: "Iman telescopico", url: "herramientas/iman-telescopico.html" },
-  { nombre: "Inclinometro", url: "herramientas/inclinometro.html" },
-  { nombre: "Indicador de caratula", url: "herramientas/indicador-de-caratula.html" },
-  { nombre: "Izadora de cable", url: "herramientas/izadora-de-cable.html" },
-
-  // J
-  { nombre: "Juego de llaves", url: "herramientas/juego-de-llaves.html" },
-  { nombre: "Juego de tubos", url: "herramientas/juego-de-tubos.html" },
-  { nombre: "Jeringa de succion", url: "herramientas/jeringa-de-succion.html" },
-  { nombre: "Junta universal", url: "herramientas/junta-universal.html" },
-  { nombre: "Juego de brocas", url: "herramientas/juego-de-brocas.html" },
-  { nombre: "Junta torica extractor", url: "herramientas/junta-torica-extractor.html" },
-
-  // K
-  { nombre: "Kit de herramientas", url: "herramientas/kit-de-herramientas.html" },
-  { nombre: "Kit de roscado", url: "herramientas/kit-de-roscado.html" },
-  { nombre: "Kit de autocentrante", url: "herramientas/kit-de-autocentrante.html" },
-  { nombre: "Knipex alicate", url: "herramientas/knipex-alicate.html" },
-  { nombre: "Kit de soldadadura electrica", url: "kit-de-soldadura-electrica.html" },
-  { nombre: "Kit de carrocero", url: "herramientas/kit-de-carrocero.html" },
-
-  // L
-  { nombre: "Llave inglesa", url: "herramientas/llave-inglesa.html" },
-  { nombre: "Llave Allen", url: "herramientas/llave-allen.html" },
-  { nombre: "Lijadora", url: "herramientas/lijadora.html" },
-  { nombre: "Lima mecanica", url: "herramientas/lima-mecanica.html" },
-  { nombre: "Llave fija", url: "herramientas/llave-fija.html" },
-  { nombre: "Llave de trinquete", url: "herramientas/llave-de-trinquete.html" },
-
-  // M
-  { nombre: "Martillo de peña", url: "herramientas/martillo-de-peña.html" },
-  { nombre: "Maza", url: "herramientas/maza.html" },
-  { nombre: "Multimetro", url: "herramientas/multimetro.html" },
-  { nombre: "Mini esmeriladora", url: "herramientas/mini-esmeriladora.html" },
-  { nombre: "Mortero", url: "herramientas/mortero.html" },
-  { nombre: "Manguera de presion", url: "herramientas/manguera-de-presion.html" },
-
-  // N
-  { nombre: "Nivel de burbuja", url: "herramientas/nivel-de-burbuja.html" },
-  { nombre: "Nivel laser", url: "herramientas/nivel-laser.html" },
-  { nombre: "Nibbler electrico", url: "herramientas/nibbler-electrico.html" },
-  { nombre: "Nivel torpedo", url: "herramientas/nivel-torpedo.html" },
-  { nombre: "Nivel de manguera", url: "herramientas/nivel-de-manguera.html" },
-  { nombre: "Nivel de mano", url: "herramientas/nivel-de-mano.html" },
-
-  // O
-  { nombre: "Ojaladora", url: "herramientas/ojaladora.html" },
-  { nombre: "Olla de presion para pintura", url: "herramientas/olla-de-presion-para-pintura.html" },
-  { nombre: "Organizador de herramientas", url: "herramientas/organizador-de-herramientas.html" },
-  { nombre: "Opresor de resortes", url: "herramientas/opresor-de-resortes.html" },
-  { nombre: "Ojalillos metalicos", url: "herramientas/ojalillos-metalicos.html" },
-  { nombre: "Opacimetro", url: "herramientas/opacimetro.html" },
-
-  // P
-  { nombre: "Alicate de presion", url: "herramientas/alicate-de-presion.html" },
-  { nombre: "Pico", url: "herramientas/pico.html" },
-  { nombre: "Pala", url: "herramientas/pala.html" },
-  { nombre: "Pistola de calor", url: "herramientas/pistola-de-calor.html" },
-  { nombre: "Prensa C", url: "herramientas/prensa-c.html" },
-  { nombre: "Pincel", url: "herramientas/pincel.html" },
-
-  // Q
-  { nombre: "Quemador de gas", url: "herramientas/quemador-de-gas.html" },
-  { nombre: "Quitapinturas termico", url: "herramientas/quitapinturas-termico.html" },
-  { nombre: "Quitaesmalte industrial", url: "herramientas/quitaesmalte-industrial.html" },
-  { nombre: "Quitarebabas", url: "herramientas/quitarebabas.html" },
-  { nombre: "Quitagrapas pesado", url: "herramientas/quitagrapas-pesado.html" },
-  { nombre: "Quitamanchas mecanico", url: "herramientas/quitamanchas-mecanico.html" },
-
-  // R
-  { nombre: "Remachadora", url: "herramientas/remachadora.html" },
-  { nombre: "Rotomartillo", url: "herramientas/rotomartillo.html" },
-  { nombre: "Rodillo de pintura", url: "herramientas/rodillo-de-pintura.html" },
-  { nombre: "Roscadora", url: "herramientas/roscadora.html" },
-  { nombre: "Rastrillo", url: "herramientas/rastrillo.html" },
-  { nombre: "Ropa de seguridad", url: "herramientas/ropa-de-seguridad.html" },
-
-  // S
-  { nombre: "Sierra circular", url: "herramientas/sierra-circular.html" },
-  { nombre: "Sierra de calar", url: "herramientas/sierra-de-calar.html" },
-  { nombre: "Soldador de estano", url: "herramientas/soldador-de-estano.html" },
-  { nombre: "Sargento", url: "herramientas/sargento.html" },
-  { nombre: "Soplador de aire", url: "herramientas/soplador-de-aire.html" },
-  { nombre: "Sarten de soldadura", url: "herramientas/sarten-de-soldadura.html" },
-
-  // T
-  { nombre: "Taladro", url: "herramientas/taladro.html" },
-  { nombre: "Tijera de hojalatero", url: "herramientas/tijera-de-hojalatero.html" },
-  { nombre: "Torno", url: "herramientas/torno.html" },
-  { nombre: "Tornillo de banco", url: "herramientas/tornillo-de-banco.html" },
-  { nombre: "Tarraja", url: "herramientas/tarraja.html" },
-  { nombre: "Tenaza", url: "herramientas/tenaza.html" },
-
-  // U
-  { nombre: "Uneta de palanca", url: "herramientas/uneta-de-palanca.html" },
-  { nombre: "Utilaje de corte", url: "herramientas/utilaje-de-corte.html" },
-  { nombre: "Ultrasonido limpiador", url: "herramientas/ultrasonido-limpiador.html" },
-  { nombre: "Union rapida neumatica", url: "herramientas/union-rapida-neumatica.html" },
-  { nombre: "Unero de mecano", url: "herramientas/unero-de-mecano.html" },
-  { nombre: "Unidad de mantenimiento FRL", url: "herramientas/unidad-de-mantenimiento-frl.html" },
-
-  // V
-  { nombre: "Vernier", url: "herramientas/vernier.html" },
-  { nombre: "Ventosa para cristal", url: "herramientas/ventosa-para-cristal.html" },
-  { nombre: "Valvula de presion", url: "herramientas/valvula-de-presion.html" },
-  { nombre: "Volvedor de machos", url: "herramientas/volvedor-de-machos.html" },
-  { nombre: "Vibrador de concreto", url: "herramientas/vibrador-de-concreto.html" },
-  { nombre: "Varilla de soldar", url: "herramientas/varilla-de-soldar.html" },
-
-  // W
-  { nombre: "Winche manual", url: "herramientas/winche-manual.html" },
-  { nombre: "Wiggle prensa", url: "herramientas/wiggle-prensa.html" },
-  { nombre: "Wire stripper", url: "herramientas/wire-stripper.html" },
-  { nombre: "Wrench de cadena", url: "herramientas/wrench-de-cadena.html" },
-  { nombre: "Wincha metalica", url: "herramientas/wincha-metalica.html" },
-  { nombre: "Waterpas", url: "herramientas/waterpas.html" },
-
-  // X
-  { nombre: "Xilografo cortador", url: "herramientas/xilografo-cortador.html" },
-  { nombre: "Extractor X", url: "herramientas/extractor-x.html" },
-  { nombre: "Xilofono comprobador", url: "herramientas/xilofono-comprobador.html" },
-  { nombre: "Xeno probador de fugas", url: "herramientas/xeno-probador-de-fugas.html" },
-  { nombre: "X-acto bisturi", url: "herramientas/x-acto-bisturi.html" },
-  { nombre: "Xenon lampara de tiempo", url: "herramientas/xenon-lampara-de-tiempo.html" },
-
-  // Y
-  { nombre: "Yunque", url: "herramientas/yunque.html" },
-  { nombre: "Yugo para resortes", url: "herramientas/yugo-para-resortes.html" },
-  { nombre: "Yugular para casco", url: "herramientas/yugular-para-casco.html" },
-  { nombre: "Yarda de medir", url: "herramientas/yarda-de-medir.html" },
-  { nombre: "Yunque de mano", url: "herramientas/yunque-de-mano.html" },
-  { nombre: "Yunta tensor", url: "herramientas/yunta-tensor.html" },
-
-  // Z
-  { nombre: "Zanjadora", url: "herramientas/zanjadora.html" },
-  { nombre: "Zapata de prensado", url: "herramientas/zapata-de-prensado.html" },
-  { nombre: "Zuncho de fleje", url: "herramientas/zuncho-de-fleje.html" },
-  { nombre: "Zunchadora manual", url: "herramientas/zunchadora-manual.html" },
-  { nombre: "Zapatilla de lijado", url: "herramientas/zapatilla-de-lijado.html" },
-  { nombre: "Zocalo para dados", url: "herramientas/zocalo-para-dados.html" },
-
-
-
-
-
-
-
-
-
-  //ultimas paginas agregadas
-
-  { nombre: "Caja herraminetas pro", url: "herramientas/cajaherramientas-pro.html" },
-  { nombre: "Compresor de aire 24L", url: "herramientas/compresor-de-aire24l.html" },
-  { nombre: "Cortadora de ceramica", url: "herramientas/cortadora-de-ceramica.html" },
-  { nombre: "hidrolavadora ELITE", url: "herramientas/hidrolavadora-electrica.html" },
-  { nombre: "Juego de llaves metricas", url: "herramientas/juegollaves-metrica.html" },
-  { nombre: "Lijadora orbital", url: "herramientas/lijadora-orbital.html" }
+  { id: 6, nombre: "Alicate", url: "alicate.html" },
+  { id: 7, nombre: "Azada", url: "azada.html" },
+  { id: 8, nombre: "Arco de sierra", url: "arco-de-sierra.html" },
+  { id: 9, nombre: "Aplanadora manual", url: "aplanadora-manual.html" },
+  { id: 10, nombre: "Azadon", url: "azadon.html" },
+  { id: 11, nombre: "Alezna", url: "alezna.html" },
+  { id: 12, nombre: "Berbiqui", url: "berbiqui.html" },
+  { id: 13, nombre: "Bomba de aire manual", url: "bomba-de-aire-manual.html" },
+  { id: 14, nombre: "Broca", url: "broca.html" },
+  { id: 15, nombre: "Biseladora", url: "biseladora.html" },
+  { id: 16, nombre: "Buril", url: "buril.html" },
+  { id: 17, nombre: "Botador", url: "botador.html" },
+  { id: 18, nombre: "Cinta metrica", url: "cinta-metrica.html" },
+  { id: 19, nombre: "Cincel", url: "cincel.html" },
+  { id: 20, nombre: "Compresor de aire", url: "compresor-de-aire.html" },
+  { id: 21, nombre: "Cortafrios", url: "cortafrios.html" },
+  { id: 22, nombre: "Cuter", url: "cuter.html" },
+  { id: 23, nombre: "Clavadora", url: "clavadora.html" },
+  { id: 24, nombre: "Destornillador", url: "destornillador.html" },
+  { id: 25, nombre: "Dado de impacto", url: "dado-de-impacto.html" },
+  { id: 26, nombre: "Decapador termico", url: "decapador-termico.html" },
+  { id: 27, nombre: "Detector de cables", url: "detector-de-cables.html" },
+  { id: 28, nombre: "Discos de corte", url: "discos-de-corte.html" },
+  { id: 29, nombre: "Dobladora de tubos", url: "dobladora-de-tubos.html" },
+  { id: 30, nombre: "Esmeriladora", url: "esmeriladora.html" },
+  { id: 31, nombre: "Escuadra de carpintero", url: "escuadra-de-carpintero.html" },
+  { id: 32, nombre: "Escofina", url: "escofina.html" },
+  { id: 33, nombre: "Espatula", url: "espatula.html" },
+  { id: 34, nombre: "Engrapadora manual", url: "engrapadora-manual.html" },
+  { id: 35, nombre: "Extractor de tornillos", url: "extractor-de-tornillos.html" },
+  { id: 36, nombre: "Formon", url: "formon.html" },
+  { id: 37, nombre: "Fresadora", url: "fresadora.html" },
+  { id: 38, nombre: "Flexometro", url: "flexometro.html" },
+  { id: 39, nombre: "Filtradora de aceite", url: "filtradora-de-aceite.html" },
+  { id: 40, nombre: "Fresa para taladro", url: "fresa-para-taladro.html" },
+  { id: 41, nombre: "Fratas", url: "fratas.html" },
+  { id: 42, nombre: "Gato hidraulico", url: "gato-hidraulico.html" },
+  { id: 43, nombre: "Grapa industrial", url: "grapa-industrial.html" },
+  { id: 44, nombre: "Guantes de trabajo", url: "guantes-de-trabajo.html" },
+  { id: 45, nombre: "Gubia", url: "gubia.html" },
+  { id: 46, nombre: "Gramil", url: "gramil.html" },
+  { id: 47, nombre: "Generador electrico", url: "generador-electrico.html" },
+  { id: 48, nombre: "Hacha", url: "hacha.html" },
+  { id: 49, nombre: "Hoe", url: "hoe.html" },
+  { id: 50, nombre: "Herramienta rotativa", url: "herramienta-rotativa.html" },
+  { id: 51, nombre: "Hormigonera", url: "hormigonera.html" },
+  { id: 52, nombre: "Hoja de sierra", url: "hoja-de-sierra.html" },
+  { id: 53, nombre: "Hijuela", url: "hijuela.html" },
+  { id: 54, nombre: "Inversor de soldadura", url: "inversor-de-soldadura.html" },
+  { id: 55, nombre: "Inyector de grasa", url: "inyector-de-grasa.html" },
+  { id: 56, nombre: "Iman telescopico", url: "iman-telescopico.html" },
+  { id: 57, nombre: "Inclinometro", url: "inclinometro.html" },
+  { id: 58, nombre: "Indicador de caratula", url: "indicador-de-caratula.html" },
+  { id: 59, nombre: "Izadora de cable", url: "izadora-de-cable.html" },
+  { id: 60, nombre: "Juego de llaves", url: "juego-de-llaves.html" },
+  { id: 61, nombre: "Juego de tubos", url: "juego-de-tubos.html" },
+  { id: 62, nombre: "Jeringa de succion", url: "jeringa-de-succion.html" },
+  { id: 63, nombre: "Junta universal", url: "junta-universal.html" },
+  { id: 64, nombre: "Juego de brocas", url: "juego-de-brocas.html" },
+  { id: 65, nombre: "Junta torica extractor", url: "junta-torica-extractor.html" },
+  { id: 66, nombre: "Kit de herramientas", url: "kit-de-herramientas.html" },
+  { id: 67, nombre: "Kit de roscado", url: "kit-de-roscado.html" },
+  { id: 68, nombre: "Kit de autocentrante", url: "kit-de-autocentrante.html" },
+  { id: 69, nombre: "Knipex alicate", url: "knipex-alicate.html" },
+  { id: 70, nombre: "Kit de soldadadura electrica", url: "kit-de-soldadura-electrica.html" },
+  { id: 71, nombre: "Kit de carrocero", url: "kit-de-carrocero.html" },
+  { id: 72, nombre: "Llave inglesa", url: "llave-inglesa.html" },
+  { id: 73, nombre: "Llave Allen", url: "llave-allen.html" },
+  { id: 74, nombre: "Lijadora", url: "lijadora.html" },
+  { id: 75, nombre: "Lima mecanica", url: "lima-mecanica.html" },
+  { id: 76, nombre: "Llave fija", url: "llave-fija.html" },
+  { id: 77, nombre: "Llave de trinquete", url: "llave-de-trinquete.html" },
+  { id: 78, nombre: "Martillo de peña", url: "martillo-de-peña.html" },
+  { id: 79, nombre: "Maza", url: "maza.html" },
+  { id: 80, nombre: "Multimetro", url: "multimetro.html" },
+  { id: 81, nombre: "Mini esmeriladora", url: "mini-esmeriladora.html" },
+  { id: 82, nombre: "Mortero", url: "mortero.html" },
+  { id: 83, nombre: "Manguera de presion", url: "manguera-de-presion.html" },
+  { id: 84, nombre: "Nivel de burbuja", url: "nivel-de-burbuja.html" },
+  { id: 85, nombre: "Nivel laser", url: "nivel-laser.html" },
+  { id: 86, nombre: "Nibbler electrico", url: "nibbler-electrico.html" },
+  { id: 87, nombre: "Nivel torpedo", url: "nivel-torpedo.html" },
+  { id: 88, nombre: "Nivel de manguera", url: "nivel-de-manguera.html" },
+  { id: 89, nombre: "Nivel de mano", url: "nivel-de-mano.html" },
+  { id: 90, nombre: "Ojaladora", url: "ojaladora.html" },
+  { id: 91, nombre: "Olla de presion para pintura", url: "olla-de-presion-para-pintura.html" },
+  { id: 92, nombre: "Organizador de herramientas", url: "organizador-de-herramientas.html" },
+  { id: 93, nombre: "Opresor de resortes", url: "opresor-de-resortes.html" },
+  { id: 94, nombre: "Ojalillos metalicos", url: "ojalillos-metalicos.html" },
+  { id: 95, nombre: "Opacimetro", url: "opacimetro.html" },
+  { id: 96, nombre: "Alicate de presion", url: "alicate-de-presion.html" },
+  { id: 97, nombre: "Pico", url: "pico.html" },
+  { id: 98, nombre: "Pala", url: "pala.html" },
+  { id: 99, nombre: "Pistola de calor", url: "pistola-de-calor.html" },
+  { id: 100, nombre: "Prensa C", url: "prensa-c.html" },
+  { id: 101, nombre: "Pincel", url: "pincel.html" },
+  { id: 102, nombre: "Quemador de gas", url: "quemador-de-gas.html" },
+  { id: 103, nombre: "Quitapinturas termico", url: "quitapinturas-termico.html" },
+  { id: 104, nombre: "Quitaesmalte industrial", url: "quitaesmalte-industrial.html" },
+  { id: 105, nombre: "Quitarebabas", url: "quitarebabas.html" },
+  { id: 106, nombre: "Quitagrapas pesado", url: "quitagrapas-pesado.html" },
+  { id: 107, nombre: "Quitamanchas mecanico", url: "quitamanchas-mecanico.html" },
+  { id: 108, nombre: "Remachadora", url: "remachadora.html" },
+  { id: 109, nombre: "Rotomartillo", url: "rotomartillo.html" },
+  { id: 110, nombre: "Rodillo de pintura", url: "rodillo-de-pintura.html" },
+  { id: 111, nombre: "Roscadora", url: "roscadora.html" },
+  { id: 112, nombre: "Rastrillo", url: "rastrillo.html" },
+  { id: 113, nombre: "Ropa de seguridad", url: "ropa-de-seguridad.html" },
+  { id: 114, nombre: "Sierra circular", url: "sierra-circular.html" },
+  { id: 115, nombre: "Sierra de calar", url: "sierra-de-calar.html" },
+  { id: 116, nombre: "Soldador de estano", url: "soldador-de-estano.html" },
+  { id: 117, nombre: "Sargento", url: "sargento.html" },
+  { id: 118, nombre: "Soplador de aire", url: "soplador-de-aire.html" },
+  { id: 119, nombre: "Sarten de soldadura", url: "sarten-de-soldadura.html" },
+  { id: 120, nombre: "Taladro", url: "taladro.html" },
+  { id: 121, nombre: "Tijera de hojalatero", url: "tijera-de-hojalatero.html" },
+  { id: 122, nombre: "Torno", url: "torno.html" },
+  { id: 123, nombre: "Tornillo de banco", url: "tornillo-de-banco.html" },
+  { id: 124, nombre: "Tarraja", url: "tarraja.html" },
+  { id: 125, nombre: "Tenaza", url: "tenaza.html" },
+  { id: 126, nombre: "Uneta de palanca", url: "uneta-de-palanca.html" },
+  { id: 127, nombre: "Utilaje de corte", url: "utilaje-de-corte.html" },
+  { id: 128, nombre: "Ultrasonido limpiador", url: "ultrasonido-limpiador.html" },
+  { id: 129, nombre: "Union rapida neumatica", url: "union-rapida-neumatica.html" },
+  { id: 130, nombre: "Unero de mecano", url: "unero-de-mecano.html" },
+  { id: 131, nombre: "Unidad de mantenimiento FRL", url: "unidad-de-mantenimiento-frl.html" },
+  { id: 132, nombre: "Vernier", url: "vernier.html" },
+  { id: 133, nombre: "Ventosa para cristal", url: "ventosa-para-cristal.html" },
+  { id: 134, nombre: "Valvula de presion", url: "valvula-de-presion.html" },
+  { id: 135, nombre: "Volvedor de machos", url: "volvedor-de-machos.html" },
+  { id: 136, nombre: "Vibrador de concreto", url: "vibrador-de-concreto.html" },
+  { id: 137, nombre: "Varilla de soldar", url: "varilla-de-soldar.html" },
+  { id: 138, nombre: "Winche manual", url: "winche-manual.html" },
+  { id: 139, nombre: "Wiggle prensa", url: "wiggle-prensa.html" },
+  { id: 140, nombre: "Wire stripper", url: "wire-stripper.html" },
+  { id: 141, nombre: "Wrench de cadena", url: "wrench-de-cadena.html" },
+  { id: 142, nombre: "Wincha metalica", url: "wincha-metalica.html" },
+  { id: 143, nombre: "Waterpas", url: "waterpas.html" },
+  { id: 144, nombre: "Xilografo cortador", url: "xilografo-cortador.html" },
+  { id: 145, nombre: "Extractor X", url: "extractor-x.html" },
+  { id: 146, nombre: "Xilofono comprobador", url: "xilofono-comprobador.html" },
+  { id: 147, nombre: "Xeno probador de fugas", url: "xeno-probador-de-fugas.html" },
+  { id: 148, nombre: "X-acto bisturi", url: "x-acto-bisturi.html" },
+  { id: 149, nombre: "Xenon lampara de tiempo", url: "xenon-lampara-de-tiempo.html" },
+  { id: 150, nombre: "Yunque", url: "yunque.html" },
+  { id: 151, nombre: "Yugo para resortes", url: "yugo-para-resortes.html" },
+  { id: 152, nombre: "Yugular para casco", url: "yugular-para-casco.html" },
+  { id: 153, nombre: "Yarda de medir", url: "yarda-de-medir.html" },
+  { id: 154, nombre: "Yunque de mano", url: "yunque-de-mano.html" },
+  { id: 155, nombre: "Yunta tensor", url: "yunta-tensor.html" },
+  { id: 156, nombre: "Zanjadora", url: "zanjadora.html" },
+  { id: 157, nombre: "Zapata de prensado", url: "zapata-de-prensado.html" },
+  { id: 158, nombre: "Zuncho de fleje", url: "zuncho-de-fleje.html" },
+  { id: 159, nombre: "Zunchadora manual", url: "zunchadora-manual.html" },
+  { id: 160, nombre: "Zapatilla de lijado", url: "zapatilla-de-lijado.html" },
+  { id: 161, nombre: "Zocalo para dados", url: "zocalo-para-dados.html" },
+  { id: 162, nombre: "Caja herraminetas pro", url: "cajaherramientas-pro.html" },
+  { id: 163, nombre: "Compresor de aire 24L", url: "compresor-de-aire24l.html" },
+  { id: 164, nombre: "Cortadora de ceramica", url: "cortadora-de-ceramica.html" },
+  { id: 165, nombre: "hidrolavadora ELITE", url: "hidrolavadora-electrica.html" },
+  { id: 166, nombre: "Juego de llaves metricas", url: "juegollaves-metrica.html" },
+  { id: 167, nombre: "Lijadora orbital", url: "lijadora-orbital.html" }
 ];
 
 function filtrarHerramientas() {
   const inputEl = document.getElementById("miBuscador");
   const lista = document.getElementById("listaResultados");
-  
+
   if (!inputEl || !lista) return;
 
   const input = inputEl.value.toLowerCase().trim();
@@ -506,21 +433,28 @@ function filtrarHerramientas() {
     return;
   }
 
-  const coincidencias = herramientas.filter(item => 
+  const coincidencias = herramientas.filter(item =>
     item.nombre.toLowerCase().includes(input)
   );
 
   if (coincidencias.length > 0) {
     lista.style.display = "block";
+    const enCarpetaHerramientas = window.location.pathname.includes("/herramientas/");
+
     coincidencias.forEach(item => {
       const li = document.createElement("li");
       li.className = "item-resultado";
-      li.textContent = item.nombre;
-      
-      li.onclick = () => {
-        window.location.href = item.url;
-      };
-      
+
+      const a = document.createElement("a");
+      a.textContent = item.nombre;
+      a.style.display = "block";
+      a.style.textDecoration = "none";
+      a.style.color = "inherit";
+
+      let rutaDestino = enCarpetaHerramientas ? item.url : "herramientas/" + item.url;
+
+      a.href = rutaDestino;
+      li.appendChild(a);
       lista.appendChild(li);
     });
   } else {
@@ -528,7 +462,75 @@ function filtrarHerramientas() {
   }
 }
 
-// ================= EVENTOS GLOBALES =================
+document.addEventListener("DOMContentLoaded", () => {
+  const inputEl = document.getElementById("miBuscador");
+  if (inputEl) {
+    inputEl.addEventListener("input", filtrarHerramientas);
+  }
+});
+
+// ================= MENÚ DESPLEGABLE DE USUARIO (HEADER) =================
+document.addEventListener("DOMContentLoaded", () => {
+  const activeUser = localStorage.getItem("activeUser");
+  const userNavLinks = document.querySelectorAll(".nav-item");
+  let userLink = null;
+
+  userNavLinks.forEach(link => {
+    if (link.innerText.includes("Inicia sesión") || link.innerText.includes("Hola,")) {
+      userLink = link;
+    }
+  });
+
+  if (userLink) {
+    if (activeUser) {
+      const userMenuWrapper = document.createElement("div");
+      userMenuWrapper.className = "user-dropdown-wrapper";
+
+      userMenuWrapper.innerHTML = `
+        <button class="nav-item user-btn-toggle" type="button">
+          <span class="nav-icon">👤</span> Hola, <strong>${activeUser}</strong> <span class="arrow-user">▾</span>
+        </button>
+        <ul class="user-dropdown-menu">
+          <li><a href="registro.html">➕ Regístrate</a></li>
+          <li><a href="iniciarseccion.html">🔄 Agregar cuenta nueva</a></li>
+          <li class="divider-user-menu"></li>
+          <li><a href="#" id="cerrarSesionHeader">🚪 Cerrar Sesión</a></li>
+        </ul>
+      `;
+
+      userLink.parentNode.replaceChild(userMenuWrapper, userLink);
+
+      const toggleBtn = userMenuWrapper.querySelector(".user-btn-toggle");
+      const dropdownMenu = userMenuWrapper.querySelector(".user-dropdown-menu");
+
+      toggleBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle("show");
+      });
+
+      window.addEventListener("click", (e) => {
+        if (!userMenuWrapper.contains(e.target)) {
+          dropdownMenu.classList.remove("show");
+        }
+      });
+
+      const logoutItem = userMenuWrapper.querySelector("#cerrarSesionHeader");
+      if (logoutItem) {
+        logoutItem.addEventListener("click", (e) => {
+          e.preventDefault();
+          localStorage.removeItem("activeUser");
+          window.location.reload();
+        });
+      }
+
+    } else {
+      userLink.innerHTML = `<span class="nav-icon">👤</span> Inicia sesión ▾`;
+      userLink.href = "iniciarseccion.html";
+    }
+  }
+});
+
+// ================= EVENTOS GLOBALES DE REAJUSTE =================
 window.addEventListener('resize', () => {
   if (typeof setMainTrackPosition === 'function') setMainTrackPosition(mainIndex, false);
   if (typeof setMiniTrackPosition === 'function') setMiniTrackPosition(miniIndex, false);

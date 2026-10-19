@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const activeUserName = document.getElementById("active-user-name");
   const logoutBtn = document.getElementById("logout-btn");
 
-  // Revisar si ya hay una cuenta o sesión guardada
   const checkSession = () => {
     const activeUser = localStorage.getItem("activeUser");
 
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Procesar el registro
   registerForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -32,13 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
 
-    // Validación de contraseñas
     if (password !== confirmPassword) {
       alert("Las contraseñas no coinciden. Por favor, verifica.");
       return;
     }
 
-    // Guardar datos en el navegador (localStorage)
+    // Guardar objeto de usuario y establecer como usuario activo
     const userData = {
       name: name,
       email: email,
@@ -48,17 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("registeredUser", JSON.stringify(userData));
     localStorage.setItem("activeUser", name);
 
-    alert("¡Registro exitoso! Tus datos han sido guardados.");
-    checkSession();
+    alert("¡Registro exitoso! Sesión iniciada.");
+    window.location.href = "index.html"; // Redirigir al inicio directamente
   });
 
-  // Botón para cerrar sesión y permitir registrar a otra persona
   logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("activeUser");
     registerForm.reset();
     checkSession();
   });
 
-  // Verificar estado al cargar la página
   checkSession();
 });
