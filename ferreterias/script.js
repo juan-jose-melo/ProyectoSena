@@ -19,3 +19,97 @@ function closeDrawer(){document.body.classList.remove('drawer-open');$('#selecti
 function setFilter(filter){activeFilter=filter;$$('.filter').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));renderProducts();$('#catalogo').scrollIntoView({behavior:'smooth',block:'start'})}
 document.addEventListener('click',e=>{const add=e.target.closest('[data-add]');if(add){addProduct(add.dataset.add);return}const remove=e.target.closest('[data-remove]');if(remove){removeProduct(Number(remove.dataset.remove));return}const filter=e.target.closest('[data-filter]');if(filter){activeFilter=filter.dataset.filter;$$('.filter').forEach(b=>b.classList.toggle('active',b===filter));renderProducts();return}const idea=e.target.closest('[data-idea]');if(idea){activeFilter=idea.dataset.idea;$$('.filter').forEach(b=>b.classList.toggle('active',b.dataset.filter===activeFilter));renderProducts();$('#catalogo').scrollIntoView({behavior:'smooth'});showToast('Catálogo adaptado a tu idea');}});
 $('#searchInput').addEventListener('input',renderProducts);$('#resetSearch').addEventListener('click',()=>{$('#searchInput').value='';activeFilter='todos';$$('.filter').forEach(b=>b.classList.toggle('active',b.dataset.filter==='todos'));renderProducts()});$('#openCart').addEventListener('click',openDrawer);$('#closeCart').addEventListener('click',closeDrawer);$('#drawerBackdrop').addEventListener('click',closeDrawer);$('#mobileMenu').addEventListener('click',()=>{$('.main-nav').classList.toggle('nav-open');$('#mobileMenu').textContent=$('.main-nav').classList.contains('nav-open')?'✕':'☰'});$$('.main-nav a').forEach(a=>a.addEventListener('click',()=>$('.main-nav').classList.remove('nav-open')));const depthSlides=Array.from(document.querySelectorAll('.depth-slide'));let depthIndex=0;let depthTimer;function paintDepth(){depthSlides.forEach((slide,i)=>{let d=(i-depthIndex+depthSlides.length)%depthSlides.length;if(d>depthSlides.length/2)d-=depthSlides.length;slide.style.setProperty('--depth',d);slide.classList.toggle('is-active',i===depthIndex);slide.setAttribute('aria-hidden',i===depthIndex?'false':'true')});$('#depthCounter').textContent=`0${depthIndex+1} / 0${depthSlides.length}`;$('#depthProgress').style.width=`${(depthIndex+1)/depthSlides.length*100}%`}function goDepth(step){depthIndex=(depthIndex+step+depthSlides.length)%depthSlides.length;paintDepth();restartDepth()}function restartDepth(){clearInterval(depthTimer);if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)depthTimer=setInterval(()=>goDepth(1),5200)}$('#depthPrev').addEventListener('click',()=>goDepth(-1));$('#depthNext').addEventListener('click',()=>goDepth(1));$('#depthStage').addEventListener('keydown',e=>{if(e.key==='ArrowLeft')goDepth(-1);if(e.key==='ArrowRight')goDepth(1)});$('#depthStage').addEventListener('mouseenter',()=>clearInterval(depthTimer));$('#depthStage').addEventListener('mouseleave',restartDepth);let touchStartX=0;$('#depthStage').addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;clearInterval(depthTimer)},{passive:true});$('#depthStage').addEventListener('touchend',e=>{let dx=e.changedTouches[0].screenX-touchStartX;if(Math.abs(dx)>45)goDepth(dx<0?1:-1);else restartDepth()},{passive:true});paintDepth();restartDepth();$('#year').textContent=new Date().getFullYear();renderProducts();updateDrawer();
+(() => {
+  const slides = [...document.querySelectorAll('.tool-slide')];
+  const previous = document.getElementById('slidePrev');
+  const next = document.getElementById('slideNext');
+  const progress = document.getElementById('slideProgress');
+  const counter = document.getElementById('slideCount');
+  const carousel = document.getElementById('depthCarousel');
+  const menuToggle = document.getElementById('menuToggle');
+  const nav = document.querySelector('.nav-links');
+  const year = document.getElementById('year');
+  let current = 0;
+  let autoAdvance;
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (year) year.textContent = new Date().getFullYear();
+
+  // La tarjeta de cada aliado abre una vista individual identificada por ?aliada=1..6.
+  const partnerNumber = new URLSearchParams(window.location.search).get('aliada');
+  if (partnerNumber && /^[1-6]$/.test(partnerNumber)) {
+    const partnerLabel = `Ferretería aliada ${partnerNumber}`;
+    document.title = `${partnerLabel} | GINE`;
+    document.querySelectorAll('.brand-name').forEach(el => {
+      el.innerHTML = `${partnerLabel.toUpperCase()} <small>ALIADA GINE</small>`;
+    });
+    document.querySelectorAll('.topline').forEach(el => {
+      el.innerHTML = `<span class="status-dot"></span> ${partnerLabel.toUpperCase()} <span class="topline-mark">/</span> ALIADA DE GINE`;
+    });
+    const heroTitle = document.querySelector('.hero h1');
+    if (heroTitle) heroTitle.innerHTML = `Bienvenido a <em>${partnerLabel.toLowerCase()}.</em>`;
+    const heroParagraph = document.querySelector('.hero-copy > p');
+    if (heroParagraph) heroParagraph.textContent = `Conoce ${partnerLabel.toLowerCase()}, una de las ferreterías aliadas que hacen parte de la comunidad GINE. Esta página es una presentación; para buscar productos y realizar tus compras, continúa en GINE.`;
+  }
+
+  function renderSlides() {
+    const total = slides.length;
+    slides.forEach((slide, index) => {
+      slide.classList.remove('is-active', 'is-prev', 'is-next');
+      slide.setAttribute('aria-hidden', index === current ? 'false' : 'true');
+      if (index === current) slide.classList.add('is-active');
+      else if (index === (current - 1 + total) % total) slide.classList.add('is-prev');
+      else if (index === (current + 1) % total) slide.classList.add('is-next');
+    });
+    if (progress) progress.style.width = `${((current + 1) / total) * 100}%`;
+    if (counter) counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+  }
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    renderSlides();
+  }
+
+  function stopAuto() {
+    if (autoAdvance) window.clearInterval(autoAdvance);
+  }
+  function startAuto() {
+    stopAuto();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      autoAdvance = window.setInterval(() => goTo(current + 1), 5200);
+    }
+  }
+
+  previous?.addEventListener('click', () => { goTo(current - 1); startAuto(); });
+  next?.addEventListener('click', () => { goTo(current + 1); startAuto(); });
+  carousel?.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(current - 1); startAuto(); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); goTo(current + 1); startAuto(); }
+  });
+  carousel?.addEventListener('mouseenter', stopAuto);
+  carousel?.addEventListener('mouseleave', startAuto);
+  carousel?.addEventListener('focusin', stopAuto);
+  carousel?.addEventListener('focusout', startAuto);
+  carousel?.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].screenX; stopAuto(); }, { passive: true });
+  carousel?.addEventListener('touchend', event => {
+    touchEndX = event.changedTouches[0].screenX;
+    const distance = touchStartX - touchEndX;
+    if (Math.abs(distance) > 45) goTo(current + (distance > 0 ? 1 : -1));
+    startAuto();
+  }, { passive: true });
+
+  menuToggle?.addEventListener('click', () => {
+    const opened = nav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(opened));
+    menuToggle.textContent = opened ? '✕' : '☰';
+  });
+  nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    if (menuToggle) menuToggle.textContent = '☰';
+  }));
+
+  renderSlides();
+  startAuto();
+})();
