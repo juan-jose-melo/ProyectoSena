@@ -84,13 +84,8 @@ if (track && prevBtn && nextBtn && dotsContainer) {
     function setMainTrackPosition(index, animate = true) {
       if (!allMainSlides[index]) return;
       
-      const slideWidth = allMainSlides[index].getBoundingClientRect().width;
-      const viewportWidth = track.parentElement.getBoundingClientRect().width;
-      const gap = window.innerWidth <= 768 ? 10 : 20;
-      const offset = (viewportWidth - slideWidth) / 2;
-    
-      track.style.transition = animate ? 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
-      track.style.transform = `translateX(-${(index * (slideWidth + gap)) - offset}px)`;
+      track.style.transition = animate ? 'transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)' : 'none';
+      track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
       updateDots();
     }
 
@@ -154,7 +149,8 @@ if (track && prevBtn && nextBtn && dotsContainer) {
     setTimeout(() => {
       setMainTrackPosition(mainIndex, false);
       startMainAutoSlide();
-    }, 100);
+    }, 80);
+    window.addEventListener('resize', () => setMainTrackPosition(mainIndex, false));
   }
 }
 
@@ -540,5 +536,50 @@ document.addEventListener("click", function(e) {
   const lista = document.getElementById("listaResultados");
   if (lista && !e.target.closest(".search-box")) {
     lista.style.display = "none";
+  }
+});
+/* GINE — microinteracciones de portada (sin interferir con los sliders existentes) */
+document.addEventListener('DOMContentLoaded', () => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cards = document.querySelectorAll('.mini-box, .sliderrr');
+  if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    cards.forEach((card) => {
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        card.style.setProperty('--pointer-x', `${x * 100}%`);
+        card.style.setProperty('--pointer-y', `${y * 100}%`);
+        if (card.classList.contains('mini-box')) {
+          card.style.transform = `translateY(-7px) perspective(800px) rotateX(${(0.5 - y) * 4}deg) rotateY(${(x - 0.5) * 5}deg)`;
+        }
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.transform = '';
+        card.style.removeProperty('--pointer-x');
+        card.style.removeProperty('--pointer-y');
+      });
+    });
+  }
+
+  document.querySelectorAll('.arrow, .mini-arrow, .slider-ferreteria-cta, .search-btn').forEach((control) => {
+    control.addEventListener('pointerdown', () => {
+      if (!reduceMotion) control.classList.add('gine-pressed');
+    });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach((eventName) => {
+      control.addEventListener(eventName, () => control.classList.remove('gine-pressed'));
+    });
+  });
+
+  const searchInput = document.getElementById('miBuscador');
+  if (searchInput) {
+    searchInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        searchInput.value = '';
+        const results = document.getElementById('listaResultados');
+        if (results) results.style.display = 'none';
+        searchInput.blur();
+      }
+    });
   }
 });
